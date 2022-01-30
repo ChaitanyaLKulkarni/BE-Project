@@ -102,8 +102,4 @@
     // Playing complete
     {typ: 'status', msg: 'Playing complete', av: 0}
 
-
-
 ```
-
--   `CWASA.callHook` = _Logger.callHook_;
