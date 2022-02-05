@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const { engStem } = require("./engStem");
 
-const SIGN_FIELS_PATH = path.join(__dirname, "public", "SignFiles_small");
+const SIGN_FIELS_PATH = path.join(__dirname, "public", "SignFiles_small ");
 const PORT = 3000;
 const app = express();
 
@@ -12,7 +12,7 @@ const availableSigml = fs
     .filter((file) => file.endsWith(".sigml"))
     .map((file) => file.replace(".sigml", ""));
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 app.get("/sign-files", (req, res) => {
     res.status(200).json(availableSigml);
@@ -48,3 +48,4 @@ app.get("/sign", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
+module.exports = app;
