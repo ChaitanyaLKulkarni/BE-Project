@@ -88,7 +88,9 @@
 
             function stemAndPlay() {
                 const text = textInp.value;
-                fetch("/sign?" + new URLSearchParams({ q: text }).toString())
+                fetch(
+                    "/api/sign?" + new URLSearchParams({ q: text }).toString()
+                )
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);
