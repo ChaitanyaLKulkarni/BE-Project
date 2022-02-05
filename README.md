@@ -82,7 +82,7 @@
 
     CWASA.addHook("animidle", function(evt) {
         // Called when animation stops / completes
-        console.log("Animation starts!");
+        console.log("Animation Ended!");
     });
     // Output
     {typ: "animidle", msg:  null, av: 0}

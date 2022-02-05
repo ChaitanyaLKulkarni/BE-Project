@@ -19,7 +19,8 @@
     },
     "homepage": "https://github.com/ChaitanyaLKulkarni/BE-Project#readme",
     "dependencies": {
-        "express": "^4.17.2"
+        "express": "^4.17.2",
+        "natural": "^5.1.13"
     },
     "devDependencies": {
         "nodemon": "^2.0.15"
