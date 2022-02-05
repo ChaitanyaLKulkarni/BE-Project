@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const { engStem } = require("./engStem");
 
-const SIGN_FIELS_PATH = path.join(__dirname, "public", "SignFiles_small ");
+const SIGN_FIELS_PATH = path.join(__dirname, "SignFiles_small");
 const PORT = 3000;
 const app = express();
 
