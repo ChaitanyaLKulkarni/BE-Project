@@ -14,6 +14,10 @@ const availableSigml = fs
 
 // app.use(express.static("public"));
 
+app.get("/api", (req, res) => {
+    res.send("ok");
+});
+
 app.get("/api/sign-files", (req, res) => {
     res.status(200).json(availableSigml);
 });
@@ -45,7 +49,7 @@ app.get("/api/sign", (req, res) => {
     res.status(200).json({ symbols, sigml });
 });
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Listening on port ${PORT}`);
+// });
 module.exports = app;
