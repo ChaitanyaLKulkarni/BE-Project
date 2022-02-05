@@ -1,4 +1,3 @@
-// const natural = require("natural");
 const natural = require("natural");
 
 const BLOCKED_WORDS = [
@@ -27,13 +26,13 @@ const BLOCKED_WORDS = [
     "let",
 ];
 
-function engStem(query) {
+function engStem(query, availableSigml) {
     const tokenizer = new natural.WordTokenizer();
     const tokens = tokenizer.tokenize(query);
-
     let lemmaWords = tokens.map((word) => {
+        if (availableSigml.includes(word)) return word;
         const res = natural.PorterStemmer.stem(word);
-        return word.length > 4 ? res : word;
+        return res;
     });
     return lemmaWords.filter((word) => !BLOCKED_WORDS.includes(word));
 }

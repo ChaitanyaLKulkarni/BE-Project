@@ -14,18 +14,13 @@ const availableSigml = fs
 
 // app.use(express.static("public"));
 
-app.get("/api", (req, res) => {
-    res.send("ok");
-});
-
 app.get("/api/sign-files", (req, res) => {
     res.status(200).json(availableSigml);
 });
 
 app.get("/api/sign", (req, res) => {
     const query = req.query.q;
-    console.log(query);
-    const words = engStem(query);
+    const words = engStem(query, availableSigml);
     let sigml = "<sigml>";
     const symbols = [];
     for (const word of words) {
