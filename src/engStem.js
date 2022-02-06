@@ -1,5 +1,5 @@
 const natural = require("natural");
-
+const Lemmatizer = require("./lemmatizer");
 const BLOCKED_WORDS = [
     "am",
     "are",
@@ -26,15 +26,21 @@ const BLOCKED_WORDS = [
     "let",
 ];
 
+const lem = new Lemmatizer();
+
 function engStem(query, availableSigml) {
     const tokenizer = new natural.WordTokenizer();
     const tokens = tokenizer.tokenize(query);
     let lemmaWords = tokens.map((word) => {
         if (availableSigml.includes(word)) return word;
-        const res = natural.PorterStemmer.stem(word);
+        // const res = natural.PorterStemmer.stem(word);
+        const res = lem.only_lemmas(word)[0];
+        // console.log({ res, res2 });
         return res;
     });
-    return lemmaWords.filter((word) => !BLOCKED_WORDS.includes(word));
+    return lemmaWords.filter(
+        (word) => !BLOCKED_WORDS.includes(word) && word.length > 0
+    );
 }
 
 module.exports = { BLOCKED_WORDS, engStem };
