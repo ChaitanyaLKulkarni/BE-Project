@@ -15,16 +15,14 @@ var Lemmatizer = function () {
         adj: ["./dict/index.adj.json", "./dict/adj.exc.json"],
         adv: ["./dict/index.adv.json", "./dict/adv.exc.json"],
     };
-    cache = {
-        noun_idx: require("./dict/index.noun.json"),
-        noun_exc: require("./dict/noun.exc.json"),
-        verb_idx: require("./dict/index.verb.json"),
-        verb_exc: require("./dict/verb.exc.json"),
-        adj_idx: require("./dict/index.adj.json"),
-        adj_exc: require("./dict/adj.exc.json"),
-        adv_idx: require("./dict/index.adv.json"),
-        adv_exc: require("./dict/adv.exc.json"),
-    };
+    cache["noun_idx"] = require("./dict/index.noun.json");
+    cache["noun_exc"] = require("./dict/noun.exc.json");
+    cache["verb_idx"] = require("./dict/index.verb.json");
+    cache["verb_exc"] = require("./dict/verb.exc.json");
+    cache["adj_idx"] = require("./dict/index.adj.json");
+    cache["adj_exc"] = require("./dict/adj.exc.json");
+    cache["adv_idx"] = require("./dict/index.adv.json");
+    cache["adv_exc"] = require("./dict/adv.exc.json");
 
     this.morphological_substitutions = {
         noun: [
