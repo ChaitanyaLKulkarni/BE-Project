@@ -15,6 +15,16 @@ var Lemmatizer = function () {
         adj: ["./dict/index.adj.json", "./dict/adj.exc.json"],
         adv: ["./dict/index.adv.json", "./dict/adv.exc.json"],
     };
+    cache = {
+        noun_idx: require("./dict/index.noun.json"),
+        noun_exc: require("./dict/noun.exc.json"),
+        verb_idx: require("./dict/index.verb.json"),
+        verb_exc: require("./dict/verb.exc.json"),
+        adj_idx: require("./dict/index.adj.json"),
+        adj_exc: require("./dict/adj.exc.json"),
+        adv_idx: require("./dict/index.adv.json"),
+        adv_exc: require("./dict/adv.exc.json"),
+    };
 
     this.morphological_substitutions = {
         noun: [
@@ -60,13 +70,13 @@ var Lemmatizer = function () {
     }
 
     // store dictionary data to localStorage from wn_files
-    for (var pos in this.wn_files) {
-        this.load_wordnet_files(
-            pos,
-            this.wn_files[pos][0],
-            this.wn_files[pos][1]
-        );
-    }
+    // for (var pos in this.wn_files) {
+    //     this.load_wordnet_files(
+    //         pos,
+    //         this.wn_files[pos][0],
+    //         this.wn_files[pos][1]
+    //     );
+    // }
 
     // fetch dictionary data from localStorage, then set up wordlists and exceptions
     for (var pos in this.wn_files) {
@@ -181,6 +191,7 @@ Lemmatizer.prototype = {
         //     var data = xhr.responseText;
         //     this.store_data(key, data);
         // }
+        console.log(key, file);
         this.store_data(key, require(file));
     },
 
