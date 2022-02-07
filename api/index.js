@@ -19,7 +19,7 @@ app.get("/api/sign-files", (req, res) => {
 });
 
 app.get("/api/sign", (req, res) => {
-    const query = req.query.q;
+    const query = req.query.q.toLocaleLowerCase();
     const words = engStem(query, availableSigml);
     let sigml = "<sigml>";
     const symbols = [];
