@@ -10,27 +10,40 @@
         <script language="javascript">
             // Initial configuration
             var initCfg = {
-                avsbsl: ["luna", "siggi", "anna", "marc", "francoise"],
+                avsbsl: ["anna", "francoise", "luna", "marc", "siggi" ],
                 avSettings: { avList: "avsbsl", initAv: "luna" },
             };
         </script>
         <style>
             .container {
+                margin-left: 20px;
+                margin-right: 20px;
                 box-sizing: border-box;
-                width: 100%;
+                width: 96%;
                 height: 100%;
                 padding: 15px;
                 display: flex;
+                align-content: center;
             }
             .controlls {
-                width: 60%;
+                align-content: center;
+                width: 40%;
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-top: 0px;
             }
             .avatarContainer {
-                width: 80%;
+                width: 60%;
                 height: 80%;
             }
             .textContainer {
-                margin: 1rem;
+                margin-top: 1rem;
+                font-size: 20px;
+                padding: 5px;
+                width: 99%;
+                text-align: center;
+                background-color: #90B1D6;
+                font-weight: bold;
             }
             .symbol {
                 font-size: 2rem;
@@ -40,13 +53,57 @@
             .highlight {
                 background-color: #ff0;
             }
+            button,input[type=button]{
+                color: white;
+                width: 200px;
+                height: 35px;
+                border-radius: 10px;
+                border: none;
+                font-size: 20px;
+
+            }
+            button:hover {
+                background-color:  #8BFE7A;
+            }
+
+           input[type=button]:hover {
+                background-color: #FE8D7C;
+            }
+            .play{
+                background-color: #4CAF50;
+            }
+            .stop{
+                background-color: #FF2300;
+            }
+            .heading{
+                padding: 5px;
+                height: 35px;
+                width: 100%;
+                background-color: #90B1D6;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            textarea, .CWASAAvMenu .av0{
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 7px;
+                box-sizing: border-box;
+                font-size: 18px;
+            }
+            label{
+                font-size: 20px;
+                font-weight: bold;
+            }
         </style>
     </head>
 
     <body>
-        <div class="container">
+        <div class="container">  
             <div class="controlls">
-                <span class="CWASAAvMenu av0"></span>
+                <center><p class="heading">Text to ISL Converter</center> </p>
                 <input
                     type="button"
                     value="Play SiGML Text"
@@ -60,27 +117,34 @@
                 <input type="button" value="-1" class="bttnPrevF av0" disabled="">
                 <input type="button" value="+1" class="bttnNextF av0" disabled="">
                 </span> -->
-                <input
-                    type="text"
-                    id="URLText"
-                    class="txtaSiGMLText av0"
-                    value=""
-                    style="display: none"
-                />
-                <textarea
+                <label for="menu">Select the Avatar: &emsp;</label>
+                <span class="CWASAAvMenu av0" id="menu"></span>
+                <br><br><br>
+                <label for="textInp">Enter the Text: &emsp;</label>
+                <textarea 
                     name=""
                     id="textInp"
                     cols="30"
                     rows="5"
                     placeholder="Enter text"
-                ></textarea>
-                <button onclick="stemAndPlay();">Play</button>
-                <input type="button" value="Stop" class="bttnStop av0" />
+                ></textarea><br><br><br>
+                <input type="text"
+                    id="URLText"
+                    class="txtaSiGMLText av0"
+                    value=""
+                    style="display: none"
+                />
+                
+                <center><button class="play" onclick="stemAndPlay();">Play</button>&emsp;
+                <input class="stop" type="button" value="Stop" class="bttnStop av0" /></center>
                 <br />
+                
+                
+                <br>
             </div>
             <div class="avatarContainer">
                 <div class="CWASAAvatar av0" align="center"></div>
-                <div class="textContainer"></div>
+                <div class="textContainer">asdfasdf asdf </div>
             </div>
         </div>
         <script>
