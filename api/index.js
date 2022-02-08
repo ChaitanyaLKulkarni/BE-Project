@@ -10,41 +10,6 @@ const SIGN_FIELS_PATH = path.join(__dirname, "SignFiles_small");
 const PORT = 3000;
 const app = express();
 
-app.get("/api/save", async (req, res) => {
-    // Read all files from SIGN_FIELS_PATH and save file name and content to database
-    await dbConnect();
-    const cache = {};
-    let total = 0;
-    const batch = [];
-
-    const availableSigml = fs
-        .readdirSync(SIGN_FIELS_PATH)
-        .filter((file) => file.endsWith(".sigml"))
-        .map((file) => file.replace(".sigml", ""));
-    for (const file of availableSigml) {
-        const filePath = path.join(SIGN_FIELS_PATH, file + ".sigml");
-        const content = fs.readFileSync(filePath, "utf-8");
-        const glosses = content.match(/<hns_sign (.*?)<\/hns_sign>/gis);
-        for (const gloss of glosses) {
-            const symbol = gloss.match(/gloss="(.*)"/i)[1].toLowerCase();
-            if (cache[symbol]) {
-                continue;
-            }
-            const hamContent = gloss.match(
-                /<hamnosys_manual>(.*?)<\/hamnosys_manual>/s
-            )[1];
-            const hamNoSys = {
-                symbol: symbol,
-                ...getHamAndUnicode(hamContent, file),
-            };
-            batch.push(hamNoSys);
-            total += 1;
-        }
-    }
-    await HamNoSys.insertMany(batch);
-    res.send(`${total} records saved`);
-});
-
 app.get("/api/all", async (req, res) => {
     await dbConnect();
 
@@ -137,6 +102,41 @@ function auth(req, res, next) {
     res.set("WWW-Authenticate", 'Basic realm="401"'); // change this
     res.status(401).send("Authentication required."); // custom message
 }
+
+app.get("/api/save", auth, async (req, res) => {
+    // Read all files from SIGN_FIELS_PATH and save file name and content to database
+    await dbConnect();
+    const cache = {};
+    let total = 0;
+    const batch = [];
+
+    const availableSigml = fs
+        .readdirSync(SIGN_FIELS_PATH)
+        .filter((file) => file.endsWith(".sigml"))
+        .map((file) => file.replace(".sigml", ""));
+    for (const file of availableSigml) {
+        const filePath = path.join(SIGN_FIELS_PATH, file + ".sigml");
+        const content = fs.readFileSync(filePath, "utf-8");
+        const glosses = content.match(/<hns_sign (.*?)<\/hns_sign>/gis);
+        for (const gloss of glosses) {
+            const symbol = gloss.match(/gloss="(.*)"/i)[1].toLowerCase();
+            if (cache[symbol]) {
+                continue;
+            }
+            const hamContent = gloss.match(
+                /<hamnosys_manual>(.*?)<\/hamnosys_manual>/s
+            )[1];
+            const hamNoSys = {
+                symbol: symbol,
+                ...getHamAndUnicode(hamContent, file),
+            };
+            batch.push(hamNoSys);
+            total += 1;
+        }
+    }
+    await HamNoSys.insertMany(batch);
+    res.send(`${total} records saved`);
+});
 
 app.get("/ham", auth, (req, res) => {
     res.sendFile(path.resolve(__dirname, "../public/hamnosys.html"));
