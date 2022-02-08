@@ -1,34 +1,41 @@
 <sigml>
-<hns_sign gloss="america">
-	<hamnosys_nonmanual>
-	</hamnosys_nonmanual>
-	<hamnosys_manual>
-		<hamsymmlr/>
-		<hamfingerstraightmod/>
-		<hamalternatingmotion/>
-		<hamfinger2345/>
-		<hamthumboutmod/>
-		<hamextfingerul/>
-		<hampalmdl/>
-		<hamparbegin/>
-		<hamfingertip/>
-		<hamindexfinger/>
-		<hammiddlefinger/>
-		<hamringfinger/>
-		<hampinky/>
-		<hamplus/>
-		<hamfingertip/>
-		<hamindexfinger/>
-		<hammiddlefinger/>
-		<hamringfinger/>
-		<hampinky/>
-		<hamparend/>
-		<haminterlock/>
-		<hamshoulders/>
-		<hamcircleu/>
-		<hamellipseh/>
-		<haminterlock/>
-		<hamalternatingmotion/>
-	</hamnosys_manual>
-</hns_sign>
+
+	<hns_sign gloss="America">
+		<hamnosys_nonmanual>
+			<hnm_mouthpicture picture="VmerkV"/>
+		</hamnosys_nonmanual>
+		<hamnosys_manual>
+			<hamsymmlr/>
+			<hamfinger2345/>
+			<hamthumboutmod/>
+			<hamextfingerol/>
+			<hampalml/>
+			<hamparbegin/>
+			<hamindexfinger/>
+			<hammiddlefinger/>
+			<hamringfinger/>
+			<hamfingerside/>
+			<hamplus/>
+			<hamindexfinger/>
+			<hammiddlefinger/>
+			<hamringfinger/>
+			<hamfingerside/>
+			<hamparend/>
+			<hamclose/>
+			<hamchest/>
+			<hamlrat/>
+			<hamparbegin/>
+			<hamcircleu/>
+			<hamlargemod/>
+			<hamclocku/>
+			<hamclocku/>
+			<hamplus/>
+			<hamcircleu/>
+			<hamlargemod/>
+			<hamclocku/>
+			<hamclocku/>
+			<hamparend/>
+		</hamnosys_manual>
+	</hns_sign>
+
 </sigml>
