@@ -7,7 +7,6 @@ const { engStem } = require("../src/engStem");
 const getHamAndUnicode = require("../src/utils/hamToUnicode");
 
 const SIGN_FIELS_PATH = path.join(__dirname, "SignFiles_small");
-const PORT = 3000;
 const app = express();
 
 app.get("/api/all", async (req, res) => {
@@ -34,14 +33,10 @@ function getSigml(sym) {
     if (!global.hamnosysCache) {
         throw new Error("Please run cache is Empty!..");
     }
-    return `<hns_sign gloss="${sym}">
-            <hamnosys_manual>
-                ${hamnosysCache[sym].ham
-                    .split(" ")
-                    .map((ham) => `<${ham}/>`)
-                    .join("")}
-            </hamnosys_manual>
-        </hns_sign>`;
+    return `<hns_sign gloss="${sym}"><hamnosys_manual>${hamnosysCache[sym].ham
+        .split(" ")
+        .map((ham) => `<${ham}/>`)
+        .join("")}</hamnosys_manual></hns_sign>`;
 }
 
 app.get("/api/sign", async (req, res) => {
@@ -114,6 +109,7 @@ app.get("/api/save", auth, async (req, res) => {
         .readdirSync(SIGN_FIELS_PATH)
         .filter((file) => file.endsWith(".sigml"))
         .map((file) => file.replace(".sigml", ""));
+
     for (const file of availableSigml) {
         const filePath = path.join(SIGN_FIELS_PATH, file + ".sigml");
         const content = fs.readFileSync(filePath, "utf-8");
