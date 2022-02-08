@@ -2947,13 +2947,13 @@
                     const last = str.split(" ").at(-2);
                     if (last in symToUnicode) {
                         str = str.replace(
-                            last,
+                            " " + last + " ",
                             String.fromCharCode("0x" + symToUnicode[last])
                         );
                         document.querySelector("#hns").value = str;
                     }
                 }
-                for (const sym of str.split(" ")) {
+                for (const sym of str) {
                     if (!sym) continue;
                     const unicode = sym.charCodeAt(0).toString(16);
                     if (!(unicode in unicodeToSym)) {
@@ -2966,8 +2966,7 @@
                 updateSigml(document.querySelector("#gloss").value, result);
             }
             function onBtnClick(e) {
-                document.querySelector("#hns").value +=
-                    e.target.innerText + " ";
+                document.querySelector("#hns").value += e.target.innerText;
                 document.querySelector("#names").value +=
                     e.target.getAttribute("title") + ", ";
                 updateSigml(
