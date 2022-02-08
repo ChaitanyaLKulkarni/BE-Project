@@ -20,6 +20,7 @@
     "homepage": "https://github.com/ChaitanyaLKulkarni/BE-Project#readme",
     "dependencies": {
         "express": "^4.17.2",
+        "mongoose": "^6.2.1",
         "natural": "^5.1.13"
     },
     "devDependencies": {
