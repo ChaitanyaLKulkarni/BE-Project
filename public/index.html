@@ -144,7 +144,7 @@
             </div>
             <div class="avatarContainer">
                 <div class="CWASAAvatar av0" align="center"></div>
-                <div class="textContainer">asdfasdf asdf </div>
+                <div class="textContainer"></div>
             </div>
         </div>
         <script>
@@ -206,55 +206,3 @@
         </script>
     </body>
 </html>
-<!-- 
-    <body onload="CWASA.init(initCfg);">
-        <script language="javascript">
-            function playText(stext) {
-                CWASA.playSiGMLText(stext);
-            }
-
-            function setSiGMLURL(sigmlURL) {
-                var loc = window.location.href;
-                var locDir = loc.substring(0, loc.lastIndexOf("/"));
-                // console.log("SiGML: "+sigmlURL);
-                // console.log("Location Dir: "+locDir);
-                sigmlURL = locDir + "/" + sigmlURL;
-                document.getElementById("URLText").value = sigmlURL;
-                return sigmlURL;
-            }
-
-            function startPlayer(sigmlURL) {
-                console.log("Start player: " + sigmlURL);
-                sigmlURL = setSiGMLURL(sigmlURL);
-                // Equivalent to click on Sign button
-                CWASA.playSiGMLURL(sigmlURL);
-            }
-        </script>
-
-        <div
-            style="
-                box-sizing: border-box;
-                width: 100%;
-                height: 100%;
-                padding: 15px;
-            "
-        >
-            <table align="center" style="width: 60%; height: 100%">
-                <tr align="center">
-                    <td width="100%" height="100%">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        
-                        <script language="javascript">
-                            // Set default sign
-                            setSiGMLURL("SignFiles/yourhobbieswhat.sigml");
-                        </script>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </body>
-</html> -->
