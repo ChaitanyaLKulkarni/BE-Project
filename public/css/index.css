@@ -1,0 +1,101 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+* {
+    font-family: "Rubik", sans-serif;
+}
+:root {
+    --font-size: 1.6rem;
+    --heading-font-size: 2rem;
+    --primary-color: #d1d1d1;
+    --primary-color-darker: #958939a3;
+    --primary-color-lighter: #efefef;
+    --accent-color: #8da1b9;
+    --accent-color-darker: #405a72;
+}
+body {
+    background-color: var(--primary-color-lighter);
+}
+.container {
+    display: flex;
+    align-content: center;
+    gap: 4%;
+    width: 94%;
+    height: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 1%;
+}
+.controlls {
+    flex: 3;
+    align-content: center;
+}
+.avatarContainer {
+    flex: 2.5;
+    height: 80%;
+}
+.textContainer {
+    width: 99%;
+    min-height: 5rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-size: var(--heading-font-size);
+    padding: 1rem 0;
+    color: var(--primary-color-lighter);
+    background-color: var(--accent-color-darker);
+}
+.symbol {
+    font-size: 2rem;
+    margin-top: 0.3rem;
+    margin-right: 1rem;
+    display: inline-block;
+}
+.highlight {
+    background-color: var(--primary-color-darker);
+}
+button,
+.btn {
+    cursor: pointer;
+    width: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: var(--font-size);
+    font-weight: bold;
+}
+.btn:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+.play {
+    background-color: #4caf50;
+}
+.stop {
+    background-color: #ff2300;
+}
+.heading {
+    height: 100%;
+    width: 100%;
+    padding: calc(var(--font-size) * 0.5) 0;
+    font-size: var(--heading-font-size);
+    color: var(--primary-color-lighter);
+    background-color: var(--accent-color-darker);
+}
+textarea,
+.CWASAAvMenu .av0 {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--accent-color-darker);
+    border-radius: 7px;
+    box-sizing: border-box;
+    font-size: var(--font-size);
+}
+textarea {
+    width: 100%;
+}
+label {
+    font-size: var(--font-size);
+    font-weight: bold;
+}

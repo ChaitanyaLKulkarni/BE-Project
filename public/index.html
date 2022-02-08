@@ -20,95 +20,7 @@
             href="https://fonts.googleapis.com/css2?family=Rubik&display=swap"
             rel="stylesheet"
         />
-        <style>
-            * {
-                font-family: "Rubik", sans-serif;
-            }
-            .container {
-                margin-left: 20px;
-                margin-right: 20px;
-                box-sizing: border-box;
-                width: 96%;
-                height: 100%;
-                padding: 15px;
-                display: flex;
-                align-content: center;
-            }
-            .controlls {
-                align-content: center;
-                width: 40%;
-                margin-left: 20px;
-                margin-right: 20px;
-                margin-top: 0px;
-            }
-            .avatarContainer {
-                width: 60%;
-                height: 80%;
-            }
-            .textContainer {
-                margin-top: 1rem;
-                font-size: 20px;
-                padding: 5px;
-                width: 99%;
-                text-align: center;
-                background-color: #90b1d6;
-                font-weight: bold;
-            }
-            .symbol {
-                font-size: 2rem;
-                margin-top: 0.1rem;
-                margin-right: 1rem;
-                display: inline-block;
-            }
-            .highlight {
-                background-color: #ff0;
-            }
-            button,
-            input[type="button"] {
-                color: white;
-                width: 200px;
-                height: 35px;
-                border-radius: 10px;
-                border: none;
-                font-size: 20px;
-            }
-            button:hover {
-                background-color: #8bfe7a;
-            }
-
-            input[type="button"]:hover {
-                background-color: #fe8d7c;
-            }
-            .play {
-                background-color: #4caf50;
-            }
-            .stop {
-                background-color: #ff2300;
-            }
-            .heading {
-                padding: 5px;
-                height: 35px;
-                width: 100%;
-                background-color: #90b1d6;
-                font-size: 30px;
-                font-weight: bold;
-            }
-            textarea,
-            .CWASAAvMenu .av0 {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 7px;
-                box-sizing: border-box;
-                font-size: 18px;
-            }
-            label {
-                font-size: 20px;
-                font-weight: bold;
-            }
-        </style>
+        <link rel="stylesheet" href="css/index.css" />
     </head>
 
     <body>
@@ -128,8 +40,20 @@
                 <input type="button" value="-1" class="bttnPrevF av0" disabled="">
                 <input type="button" value="+1" class="bttnNextF av0" disabled="">
                 </span> -->
-                <label for="menu">Select the Avatar: &emsp;</label>
+                <label for="menu">Avatar: &emsp;</label>
                 <span class="CWASAAvMenu av0" id="menu"></span>
+                <!-- <span class="spanSpeed av0">
+                    Speed :
+                    <input type="text" class="txtLogSpeed av0" value="+1.0" />
+                    <input type="button" value="-" class="bttnSpeedDown av0" />
+                    <input type="button" value="+" class="bttnSpeedUp av0" />
+                    <input
+                        type="button"
+                        value="Reset"
+                        class="bttnSpeedReset av0"
+                        disabled=""
+                    />
+                </span> -->
                 <br /><br /><br />
                 <label for="textInp">Enter the Text: &emsp;</label>
                 <textarea
@@ -149,13 +73,16 @@
                 />
 
                 <center>
-                    <button class="play" onclick="stemAndPlay();">Play</button
-                    >&emsp;
                     <input
-                        class="stop"
+                        class="btn play"
+                        type="button"
+                        value="Play"
+                        onclick="stemAndPlay();"
+                    />&emsp;
+                    <input
                         type="button"
                         value="Stop"
-                        class="bttnStop av0"
+                        class="bttnStop av0 btn stop"
                     />
                 </center>
                 <br />
@@ -176,7 +103,9 @@
                 document.querySelector(".bttnPlaySiGMLText");
 
             function stemAndPlay() {
-                const text = textInp.value;
+                const text = textInp.value.trim();
+                if (!text) return;
+                document.querySelector(".play").disabled = true;
                 fetch(
                     "/api/sign?" + new URLSearchParams({ q: text }).toString()
                 )
@@ -209,6 +138,12 @@
 
                         SiGMLTextElement.value = data.sigml;
                         bttnPlaySiGMLTextElement.click();
+                        document.querySelector(".play").disabled = false;
+                    })
+                    .catch((err) => {
+                        window.alert("Something went wrong!...");
+                        console.error(err);
+                        document.querySelector(".play").disabled = false;
                     });
             }
             CWASA.addHook("avatarsign", (e) => {
