@@ -2,5 +2,8 @@
     "rewrites": [
         { "source": "/ham", "destination": "/api" },
         { "source": "/api/(.*)", "destination": "/api" }
-    ]
+    ],
+    "github": {
+        "silent": true
+    }
 }
