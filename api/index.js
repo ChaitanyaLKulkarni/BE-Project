@@ -15,6 +15,7 @@ const availableSigml = fs
 // app.use(express.static("public"));
 
 app.get("/api/sign-files", (req, res) => {
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
     res.status(200).json(availableSigml);
 });
 
@@ -41,6 +42,7 @@ app.get("/api/sign", (req, res) => {
         }
     }
     sigml += "</sigml>";
+    res.setHeader("Cache-Control", "max-age=0, s-maxage=86400");
     res.status(200).json({ symbols, sigml });
 });
 
