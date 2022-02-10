@@ -32,14 +32,14 @@ function engStem(query, availableSigml) {
     const tokenizer = new natural.WordTokenizer();
     const tokens = tokenizer.tokenize(query);
     let lemmaWords = tokens.map((word) => {
-        if (availableSigml[word]) return word;
+        // if (availableSigml[word]) return word;
         // const res = natural.PorterStemmer.stem(word);
         const res = lem.only_lemmas(word)[0];
         // console.log({ res, res2 });
         return res;
     });
     return lemmaWords.filter(
-        (word) => !BLOCKED_WORDS.includes(word) && word.length > 0
+        (word) => !BLOCKED_WORDS.includes(word) && word && word.length > 0
     );
 }
 
