@@ -1,5 +1,7 @@
 # BE-Project
 
+### Stop word https://www.ranks.nl/stopwords
+
 ## Findings
 
 -   Project uses `https://vh.cmp.uea.ac.uk/index.php/CWASA_Local_Installation` for the installation of the CWASA tool mainly `jas`.
