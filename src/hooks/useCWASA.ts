@@ -16,5 +16,5 @@ export default function useCWASA() {
         };
         checkAndSet();
     }, []);
-    return [CWASA] as const;
+    return CWASA;
 }

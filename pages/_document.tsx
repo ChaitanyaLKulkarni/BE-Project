@@ -10,7 +10,6 @@ export default function Document() {
                     href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
                     rel="stylesheet"
                 />
-                <link rel="stylesheet" href="jas/loc2022/cwa/cwasa.css" />
             </Head>
             <body>
                 <Main />
