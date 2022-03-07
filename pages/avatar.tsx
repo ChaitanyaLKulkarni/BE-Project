@@ -7,6 +7,7 @@ import usePlaySigml from "../src/hooks/usePlaySigml";
 import styles from "../styles/Avatar.module.css";
 
 type Props = {};
+
 export default function AvatarPage({}: Props) {
     const CWASA = useCWASA();
     const [fps, setFps] = useState(0);
