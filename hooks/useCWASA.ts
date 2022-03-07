@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { ICWASA } from "../utils/CWASA";
 
-type Avatar = "anna" | "francoise" | "luna" | "marc" | "siggi";
-
 const WAIT_TIME = 1000;
 export default function useCWASA() {
     const [CWASA, setCWASA] = useState<ICWASA>();
