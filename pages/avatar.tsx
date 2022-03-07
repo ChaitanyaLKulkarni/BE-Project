@@ -1,41 +1,74 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
-import useCWASA from "../hooks/useCWASA";
+import useCWASA from "../src/hooks/useCWASA";
+import { round } from "../src/utils/mathUtils";
 import styles from "../styles/Avatar.module.css";
+import { ISignResponse } from "../src/utils/types";
 
 type Props = {};
-
+type Symbol = { symbol: string; idx: number };
 export default function AvatarPage({}: Props) {
     const [CWASA] = useCWASA();
     const [fps, setFps] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [inpText, setInpText] = useState("");
+    const [symbols, setSymbols] = useState([] as Symbol[]);
+    const [signId, seSignId] = useState(0);
+
+    const requestAndPlaySiGML = async () => {
+        fetch(
+            "/api/sign?" +
+                new URLSearchParams({
+                    q: inpText,
+                }).toString()
+        )
+            .then((resp) => resp.json())
+            .then((data: ISignResponse) => {
+                if (data.status_code !== 200) return;
+                console.log(data);
+                let i = 0;
+                const symbols: Symbol[] = [];
+                data.data?.symbols.forEach((symbol) => {
+                    for (let j = 0; j < symbol.length; j++) {
+                        const sym = symbol[j];
+                        symbols.push({ symbol: sym, idx: i++ });
+                    }
+                });
+                setSymbols(symbols);
+                CWASA?.playSiGMLText(data.data?.sigml ?? "");
+            })
+            .catch((err) => {
+                window.alert("Something went wrong!...");
+                console.error(err);
+            });
+    };
+
     useEffect(() => {
-        // CWASA?.addHook("avatarfps", ({ msg }) => {
-        //     setFps(msg);
-        // });
         const initCfg = {
             avsbsl: ["anna", "francoise", "luna", "marc", "siggi"],
             avSettings: { avList: "avsbsl", initAv: "luna" },
         };
         CWASA?.init(initCfg);
+        CWASA?.addHook("avatarfps", ({ msg }) => setFps(round(msg, 2)));
+        CWASA?.addHook("animactive", () => setIsPlaying(true));
+        CWASA?.addHook("animidle", () => setIsPlaying(false));
+        CWASA?.addHook("avatarsign", (e) => {
+            // {typ: "avatarsign", msg: {g: 'your', f: 1, s: 0}, av: 0}
+            seSignId(e.msg.s);
+        });
+        // CWASA?.addHook("status", console.log);
     }, [CWASA]);
+
     return (
         <>
             <Head>
                 <title>Avatar</title>
-                {/* eslint-disable-next-line @next/next/no-css-tags */}
-                <link rel="stylesheet" href="jas/loc2022/cwa/cwasa.css" />
             </Head>
             <Script src="jas/loc2022/cwa/allcsa.js" />
             <div className={styles.container}>
                 <div className={styles.controlls}>
                     <p className={styles.heading}>Text to ISL Converter</p>
-                    <input
-                        type="button"
-                        value="Play SiGML Text"
-                        className="bttnPlaySiGMLText av0"
-                        style={{ display: "none" }}
-                    />
                     <label className={styles.label} htmlFor="menu">
                         Avatar: &emsp;
                     </label>
@@ -48,43 +81,52 @@ export default function AvatarPage({}: Props) {
                     </label>
                     <textarea
                         className={styles.textarea}
-                        name=""
-                        id="textInp"
                         cols={30}
                         rows={5}
                         placeholder="Enter text"
+                        value={inpText}
+                        onChange={(e) => setInpText(e.target.value)}
                     ></textarea>
                     <br />
                     <br />
                     <br />
-                    <input
-                        type="text"
-                        id="URLText"
-                        className="txtaSiGMLText av0"
-                        value=""
-                        style={{ display: "none" }}
-                    />
-                    <input
+                    <button
                         className={`${styles.btn} ${styles.play}`}
-                        type="button"
-                        value="Play"
-                        onClick={() => {
-                            //stemAndPlay();
-                            console.log("Steam and Play");
-                        }}
-                    />
+                        disabled={isPlaying}
+                        onClick={requestAndPlaySiGML}
+                    >
+                        Play
+                    </button>
                     &emsp;
-                    <input
-                        type="button"
-                        value="Stop"
-                        className={`bttnStop av0 ${styles.btn} ${styles.stop}`}
-                    />
+                    <button
+                        className={`${styles.btn} ${styles.stop}`}
+                        disabled={!isPlaying}
+                        onClick={() => CWASA?.stopSiGML()}
+                    >
+                        Stop
+                    </button>
                     <br />
                     <br />
+                    FPS : {fps}
                 </div>
                 <div className={styles.avatarContainer}>
                     <div className="CWASAAvatar av0"></div>
-                    <div className={styles.textContainer}></div>
+                    <div className={styles.textContainer}>
+                        {symbols.map((symbol) => {
+                            return (
+                                <span
+                                    key={symbol.idx}
+                                    className={`${styles.symbol} ${
+                                        signId === symbol.idx
+                                            ? styles.highlight
+                                            : ""
+                                    }`}
+                                >
+                                    {symbol.symbol}
+                                </span>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </>

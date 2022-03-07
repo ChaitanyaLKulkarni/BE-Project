@@ -7,7 +7,6 @@ export default function useCWASA() {
 
     useEffect(() => {
         const checkAndSet = () => {
-            console.log("Check");
             const _CWASA = (window as any).CWASA as ICWASA;
             if (!_CWASA && !CWASA) {
                 setTimeout(checkAndSet, WAIT_TIME);
