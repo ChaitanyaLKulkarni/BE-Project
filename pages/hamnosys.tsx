@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
+import type { NextPage } from "next";
 import Head from "next/head";
-import Script from "next/script";
 import useCWASA from "../src/hooks/useCWASA";
 import {
     convertToSigml,
@@ -12,7 +12,7 @@ import Link from "next/link";
 
 type Props = {};
 
-export default function Hamnosys({}: Props) {
+const Hamnosys: NextPage = ({}: Props) => {
     const CWASA = useCWASA();
     const [currentTab, setCurrentTab] = useState(0);
     const [gloss, setGloss] = useState("");
@@ -106,70 +106,64 @@ export default function Hamnosys({}: Props) {
                     />
                     <ul className={styles.cssTabs}>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 0 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(0)}
                             >
                                 Handshape
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 1 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(1)}
                             >
                                 Orientation
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 2 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(2)}
                             >
                                 Location
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 3 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(3)}
                             >
                                 Movement 1
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 4 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(4)}
                             >
                                 Movement 2
-                            </a>
+                            </button>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <button
                                 className={
                                     currentTab === 5 ? styles.current : ""
                                 }
                                 onClick={() => setCurrentTab(5)}
                             >
                                 Two-handed
-                            </a>
+                            </button>
                         </li>
                     </ul>
 
@@ -2657,4 +2651,6 @@ export default function Hamnosys({}: Props) {
             </div>
         </>
     );
-}
+};
+
+export default Hamnosys;

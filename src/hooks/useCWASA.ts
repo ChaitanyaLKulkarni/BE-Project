@@ -9,7 +9,7 @@ const initCfg = {
     avSettings: { avList: "avsbsl", initAv: "luna" },
 };
 
-export default function useCWASA(config: any = initCfg) {
+const useCWASA = (config: any = initCfg): ICWASA | undefined => {
     const [CWASA, setCWASA] = useState<ICWASA>();
     const router = useRouter();
     useEffect(() => {
@@ -46,4 +46,6 @@ export default function useCWASA(config: any = initCfg) {
         checkAndSet();
     }, [config]);
     return CWASA;
-}
+};
+
+export default useCWASA;

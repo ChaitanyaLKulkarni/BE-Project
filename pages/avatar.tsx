@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
+import type { NextPage } from "next";
 import Head from "next/head";
-import Script from "next/script";
-import { useRouter } from "next/router";
 import { round } from "../src/utils/mathUtils";
 import useCWASA from "../src/hooks/useCWASA";
 import usePlaySigml from "../src/hooks/usePlaySigml";
@@ -10,7 +9,7 @@ import Link from "next/link";
 
 type Props = {};
 
-export default function AvatarPage({}: Props) {
+const AvatarPage: NextPage = ({}: Props) => {
     const CWASA = useCWASA();
     const [fps, setFps] = useState(0);
     const [inpText, setInpText] = useState("");
@@ -94,4 +93,6 @@ export default function AvatarPage({}: Props) {
             </div>
         </>
     );
-}
+};
+
+export default AvatarPage;
