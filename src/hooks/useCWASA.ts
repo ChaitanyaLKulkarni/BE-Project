@@ -22,10 +22,10 @@ const useCWASA = (config: any = initCfg): ICWASA | undefined => {
         const onRouterChange = () => {
             router.reload();
         };
-        router.events.on("routeChangeStart", onRouterChange);
+        router.events.on("routeChangeComplete", onRouterChange);
 
         return () => {
-            router.events.off("routeChangeStart", onRouterChange);
+            router.events.off("routeChangeComplete", onRouterChange);
 
             document.body.removeChild(script);
         };
