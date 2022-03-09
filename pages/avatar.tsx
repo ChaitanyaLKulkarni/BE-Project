@@ -6,6 +6,7 @@ import { round } from "../src/utils/mathUtils";
 import useCWASA from "../src/hooks/useCWASA";
 import usePlaySigml from "../src/hooks/usePlaySigml";
 import styles from "../styles/Avatar.module.css";
+import Link from "next/link";
 
 type Props = {};
 
@@ -25,6 +26,9 @@ export default function AvatarPage({}: Props) {
             <Head>
                 <title>Avatar</title>
             </Head>
+            <Link href="/hamnosys">
+                <a>Hamnosys</a>
+            </Link>
             <div className={styles.container}>
                 <div className={styles.controlls}>
                     <p className={styles.heading}>Text to ISL Converter</p>

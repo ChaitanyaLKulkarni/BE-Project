@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ICWASA } from "../utils/CWASA";
 
@@ -10,20 +11,25 @@ const initCfg = {
 
 export default function useCWASA(config: any = initCfg) {
     const [CWASA, setCWASA] = useState<ICWASA>();
-
+    const router = useRouter();
     useEffect(() => {
         const script = document.createElement("script");
-
         script.src = "jas/loc2022/cwa/allcsa.js";
         script.async = true;
-        script.id = "allcsa-script";
         document.body.appendChild(script);
 
-        return () => {
-            document.body.removeChild(script);
-            (window as any).CWASA = undefined;
+        // Need to do cause CWASA script leaves residue that can only be removed by reloading the page
+        const onRouterChange = () => {
+            router.reload();
         };
-    }, []);
+        router.events.on("routeChangeStart", onRouterChange);
+
+        return () => {
+            router.events.off("routeChangeStart", onRouterChange);
+
+            document.body.removeChild(script);
+        };
+    }, [router]);
 
     useEffect(() => {
         const checkAndSet = () => {

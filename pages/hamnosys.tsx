@@ -8,6 +8,7 @@ import {
     unicodeToHam,
 } from "../src/utils/hamnosys";
 import styles from "../styles/hamnosys.module.css";
+import Link from "next/link";
 
 type Props = {};
 
@@ -76,6 +77,9 @@ export default function Hamnosys({}: Props) {
             <Head>
                 <title>HamNoSys Editor</title>
             </Head>
+            <Link href="/avatar">
+                <a>Avatar</a>
+            </Link>
             <div className={styles.container}>
                 <div className={styles.inputs}>
                     <input
