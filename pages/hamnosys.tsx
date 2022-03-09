@@ -76,7 +76,6 @@ export default function Hamnosys({}: Props) {
             <Head>
                 <title>HamNoSys Editor</title>
             </Head>
-            <Script type="text/javascript" src="jas/loc2022/cwa/allcsa.js" />
             <div className={styles.container}>
                 <div className={styles.inputs}>
                     <input

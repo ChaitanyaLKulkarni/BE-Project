@@ -25,7 +25,6 @@ export default function AvatarPage({}: Props) {
             <Head>
                 <title>Avatar</title>
             </Head>
-            <Script src="jas/loc2022/cwa/allcsa.js" />
             <div className={styles.container}>
                 <div className={styles.controlls}>
                     <p className={styles.heading}>Text to ISL Converter</p>
