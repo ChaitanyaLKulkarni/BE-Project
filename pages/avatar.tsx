@@ -16,14 +16,7 @@ export default function AvatarPage({}: Props) {
         usePlaySigml(CWASA);
 
     useEffect(() => {
-        const initCfg = {
-            avsbsl: ["anna", "francoise", "luna", "marc", "siggi"],
-            avSettings: { avList: "avsbsl", initAv: "luna" },
-        };
-        CWASA?.init(initCfg);
         CWASA?.addHook("avatarfps", ({ msg }) => setFps(round(msg, 2)));
-
-        // CWASA?.addHook("status", console.log);
     }, [CWASA]);
 
     return (

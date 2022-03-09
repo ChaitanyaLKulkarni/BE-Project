@@ -2,6 +2,10 @@
 
 ### Stop word https://www.ranks.nl/stopwords
 
+### Dsign Reference:
+
+-   https://www.figma.com/file/ODcUsSuDhQgQm7t8oZTRMV/BE-project
+
 ### TODO:
 
 -   [ ] Pages:
