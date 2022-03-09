@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
+import { useRouter } from "next/router";
 import { round } from "../src/utils/mathUtils";
 import useCWASA from "../src/hooks/useCWASA";
 import usePlaySigml from "../src/hooks/usePlaySigml";
