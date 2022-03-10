@@ -20,6 +20,7 @@ function getSigml(sym: string) {
         .map((ham) => `<${ham}/>`)
         .join("")}</hamnosys_manual></hns_sign>`;
 }
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<ISignResponse>
