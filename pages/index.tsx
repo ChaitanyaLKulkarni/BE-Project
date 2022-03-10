@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import NavBar from "../src/components/NavBar";
@@ -8,6 +9,9 @@ import styles from "../styles/Home.module.css";
 const HomePage: NextPage = () => {
     return (
         <>
+            <Head>
+                <title>Text to ISL</title>
+            </Head>
             <NavBar />
             <div className={styles.container}>
                 <div className={styles.title}>
