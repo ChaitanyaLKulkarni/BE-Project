@@ -14,22 +14,25 @@ const HomePage: NextPage = () => {
             </Head>
             <NavBar />
             <div className={styles.container}>
-                <div className={styles.title}>
-                    Text to Indian Sign Language conversion
-                </div>
-                <div className={styles.decsription}>
-                    <ul>
-                        <li>
-                            Indian Sign Language is used by 1.3 million users.
-                            The proposed system gets input as text and
-                            translates them to corresponding 3D ISL animation.
-                        </li>
-                        <li>
-                            This will help in solving the issue for deaf
-                            community and to literate others about sign
-                            language.
-                        </li>
-                    </ul>
+                <div className={styles.content}>
+                    <div className={styles.title}>
+                        Text to Indian Sign Language conversion
+                    </div>
+                    <div className={styles.decsription}>
+                        <ul>
+                            <li>
+                                Indian Sign Language is used by 1.3 million
+                                users. The proposed system gets input as text
+                                and translates them to corresponding 3D ISL
+                                animation.
+                            </li>
+                            <li>
+                                This will help in solving the issue for deaf
+                                community and to literate others about sign
+                                language.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className={styles.imageContainer}>
                     <Image
