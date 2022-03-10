@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { round } from "../src/utils/mathUtils";
 import useCWASA from "../src/hooks/useCWASA";
 import usePlaySigml from "../src/hooks/usePlaySigml";
 import styles from "../styles/Avatar.module.css";
-import Link from "next/link";
+import NavBar from "../src/components/NavBar";
 
 type Props = {};
 
@@ -26,9 +25,7 @@ const AvatarPage: NextPage = ({}: Props) => {
             <Head>
                 <title>Avatar</title>
             </Head>
-            <Link href="/hamnosys">
-                <a>Hamnosys</a>
-            </Link>
+            <NavBar />
             <div className={styles.container}>
                 <div className={styles.controlls}>
                     <p className={styles.heading}>Text to ISL Converter</p>

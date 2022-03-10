@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 * {
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 :root {
     --font-size: 1.6rem;
@@ -17,5 +17,8 @@
 }
 
 body {
-    background-color: var(--primary-color-lighter);
+    background-color: #fff;
+    width: 80%;
+    margin: 0;
+    margin-left: 10%;
 }
