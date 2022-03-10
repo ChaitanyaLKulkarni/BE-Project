@@ -1,0 +1,21 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+* {
+    font-family: "Rubik", sans-serif;
+}
+:root {
+    --font-size: 1.6rem;
+    --heading-font-size: 2rem;
+    --primary-color: #d1d1d1;
+    --primary-color-darker: #958939a3;
+    --primary-color-lighter: #efefef;
+    --accent-color: #8da1b9;
+    --accent-color-darker: #405a72;
+}
+
+body {
+    background-color: var(--primary-color-lighter);
+}

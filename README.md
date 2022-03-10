@@ -2,6 +2,28 @@
 
 ### Stop word https://www.ranks.nl/stopwords
 
+### Dsign Reference:
+
+-   https://www.figma.com/file/ODcUsSuDhQgQm7t8oZTRMV/BE-project
+
+### TODO:
+
+-   [ ] Pages:
+    -   [ ] Index:
+        -   NavBar
+        -   Info
+    -   [x] Avatar:
+    -   [ ] HamNosys Editor
+    -   [ ] About:
+        -   [ ] Inspiration
+        -   [ ] Basic Personal Info
+        -   [ ] Thank you All
+    -   [ ] Lessons:
+        -   [ ] Chapter:
+            -   [ ] Difficulty
+            -   [ ] Description
+            -   [ ] ISL 3d Avatar
+
 ## Findings
 
 -   Project uses `https://vh.cmp.uea.ac.uk/index.php/CWASA_Local_Installation` for the installation of the CWASA tool mainly `jas`.
