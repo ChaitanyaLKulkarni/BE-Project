@@ -9,6 +9,7 @@ import {
 } from "../src/utils/hamnosys";
 import styles from "../styles/hamnosys.module.css";
 import Link from "next/link";
+import usePlaySigml from "../src/hooks/usePlaySigml";
 
 type Props = {};
 
@@ -19,6 +20,8 @@ const Hamnosys: NextPage = ({}: Props) => {
     const [ham, setHam] = useState("");
     const [hamUnicode, setHamUnicode] = useState("");
     const [sigml, setSigml] = useState("");
+
+    const { isPlaying, playSigmlText, stopPlaying } = usePlaySigml(CWASA);
 
     const hamNoSysTranslate = useCallback(
         (gloss: string, text: string): void => {
@@ -2623,22 +2626,35 @@ const Hamnosys: NextPage = ({}: Props) => {
                             cols={50}
                         ></textarea>
                         <div className="sigml-buttons">
-                            <input
-                                type="button"
-                                value="Play SiGML"
-                                className="bttnPlaySiGMLText av0"
-                            />
+                            <button
+                                className={""}
+                                onClick={() => playSigmlText(sigml)}
+                                disabled={isPlaying}
+                            >
+                                Play
+                            </button>
+                            <button
+                                className={""}
+                                onClick={stopPlaying}
+                                disabled={!isPlaying}
+                            >
+                                Stop
+                            </button>
+                            <br />
                             <button
                                 className="sigml-button"
-                                type="button"
-                                value="Save"
+                                onClick={() =>
+                                    window.alert("NOT implemented !!😅")
+                                }
                             >
                                 Save
                             </button>
                             <button
                                 className="sigml-button"
-                                type="button"
-                                value="Clear"
+                                onClick={() => {
+                                    setHamUnicode("");
+                                    setGloss("");
+                                }}
                             >
                                 Clear
                             </button>

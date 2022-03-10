@@ -10,7 +10,8 @@ export default function usePlaySigml(CWASA: ICWASA | undefined) {
     const [symbols, setSymbols] = useState([] as Symbol[]);
     const [signId, seSignId] = useState(0);
 
-    const requestAndPlaySiGML = async (inpText: string) => {
+    const requestAndPlaySiGML = async (inpText: string): Promise<void> => {
+        if (!CWASA) return;
         setIsLoading(true);
         fetch(
             "/api/sign?" +
@@ -42,6 +43,16 @@ export default function usePlaySigml(CWASA: ICWASA | undefined) {
             });
     };
 
+    const playSigmlText = (sigml: string): string | undefined => {
+        if (!CWASA) return;
+        return CWASA.playSiGMLText(sigml);
+    };
+
+    const stopPlaying = (): string | undefined => {
+        if (!CWASA) return;
+        return CWASA.stopSiGML();
+    };
+
     useEffect(() => {
         CWASA?.addHook("animactive", () => setIsPlaying(true));
         CWASA?.addHook("animidle", () => setIsPlaying(false));
@@ -51,5 +62,13 @@ export default function usePlaySigml(CWASA: ICWASA | undefined) {
         });
     }, [CWASA]);
 
-    return { isLoading, isPlaying, symbols, signId, requestAndPlaySiGML };
+    return {
+        isLoading,
+        isPlaying,
+        symbols,
+        signId,
+        requestAndPlaySiGML,
+        playSigmlText,
+        stopPlaying,
+    };
 }

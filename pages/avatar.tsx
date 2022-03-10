@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { round } from "../src/utils/mathUtils";
@@ -11,14 +11,15 @@ type Props = {};
 
 const AvatarPage: NextPage = ({}: Props) => {
     const CWASA = useCWASA();
-    const [fps, setFps] = useState(0);
     const [inpText, setInpText] = useState("");
-    const { requestAndPlaySiGML, isLoading, isPlaying, signId, symbols } =
-        usePlaySigml(CWASA);
-
-    useEffect(() => {
-        CWASA?.addHook("avatarfps", ({ msg }) => setFps(round(msg, 2)));
-    }, [CWASA]);
+    const {
+        requestAndPlaySiGML,
+        stopPlaying,
+        isLoading,
+        isPlaying,
+        signId,
+        symbols,
+    } = usePlaySigml(CWASA);
 
     return (
         <>
@@ -63,13 +64,12 @@ const AvatarPage: NextPage = ({}: Props) => {
                     <button
                         className={`${styles.btn} ${styles.stop}`}
                         disabled={!isPlaying || isLoading}
-                        onClick={() => CWASA?.stopSiGML()}
+                        onClick={stopPlaying}
                     >
                         Stop
                     </button>
                     <br />
                     <br />
-                    FPS : {fps}
                 </div>
                 <div className={styles.avatarContainer}>
                     <div className="CWASAAvatar av0"></div>
