@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../src/components/NavBar";
 import useCWASA from "../src/hooks/useCWASA";
+import usePlaySigml from "../src/hooks/usePlaySigml";
 import Chapter, { IChapter, ILesson } from "../src/models/Chapter";
 import styles from "../styles/Lessons.module.css";
 
@@ -10,6 +11,7 @@ type Props = {
 
 const LessonsPage = (props: Props) => {
     const CWASA = useCWASA();
+    const { isPlaying, playSigmlText, stopPlaying } = usePlaySigml(CWASA);
     const [allChapters, _] = useState(props.chapters);
     const [chapter, setChapter] = useState<IChapter | undefined>();
     const [lesson, setLesson] = useState<ILesson | undefined>();
@@ -21,12 +23,19 @@ const LessonsPage = (props: Props) => {
     };
 
     const handleLessonChange = (l: ILesson) => {
-        if (l._id === lesson?._id) setLesson(undefined);
-        else {
+        if (l._id === lesson?._id) {
+            setLesson(undefined);
+            stopPlaying();
+        } else {
             setLesson(l);
-            CWASA?.playSiGMLText(l.sigml);
+            playSigmlText(l.sigml);
         }
     };
+
+    useEffect(() => {
+        if (isPlaying) return;
+        setLesson(undefined);
+    }, [isPlaying]);
 
     return (
         <>
