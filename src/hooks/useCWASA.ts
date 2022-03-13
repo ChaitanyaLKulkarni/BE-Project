@@ -22,7 +22,6 @@ const useCWASA = ({ config = initCfg, autoReload = true }: Props = {}):
         script.src = "/jas/loc2022/cwa/allcsa.js";
         script.async = true;
         document.body.appendChild(script);
-        console.log("Router Changed!!");
         // Need to do cause CWASA script leaves residue that can only be removed by reloading the page
         function onRouterChange(newPath: string) {
             if (!autoReload) return;

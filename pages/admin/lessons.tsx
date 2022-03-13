@@ -1,13 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NavBar from "../../src/components/NavBar";
 import useCWASA from "../../src/hooks/useCWASA";
-import { IChapterSaveResponse, IChaptersRepsonse } from "../../src/utils/types";
+import {
+    IChapterSaveResponse,
+    IChaptersRepsonse,
+    ISignResponse,
+} from "../../src/utils/types";
 import { IChapter, ILesson } from "../../src/models/Chapter";
 import styles from "../../styles/Lessons.module.css";
 
 type Props = {};
 
+function debounce(fn: (...args: any) => void, time: number) {
+    let timeoutId: NodeJS.Timeout | null;
+    return wrapper;
+    function wrapper(...args: any) {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+            timeoutId = null;
+            fn(...args);
+        }, time);
+    }
+}
 const LessonsAdminPage = (props: Props) => {
+    const CWASA = useCWASA();
     const [allChapters, setAllChapters] = useState<IChapter[]>([]);
     const [chapter, setChapter] = useState<IChapter | undefined>();
     const [lesson, setLesson] = useState<ILesson | undefined>();
@@ -35,15 +53,27 @@ const LessonsAdminPage = (props: Props) => {
     }, []);
 
     useEffect(() => {
-        setChapterTitle(chapter?.title);
-        setChapterDesc(chapter?.description);
-        setChapterDifficulty(chapter?.difficulty ?? 1);
+        if (!chapter) {
+            setChapterTitle("");
+            setChapterDesc("");
+            setChapterDifficulty(1);
+        } else {
+            setChapterTitle(chapter?.title);
+            setChapterDesc(chapter?.description);
+            setChapterDifficulty(chapter?.difficulty ?? 1);
+        }
     }, [chapter]);
 
     useEffect(() => {
-        setLessonDesc(lesson?.description);
-        setLessonSymbol(lesson?.symbol);
-        setLessonSigml(lesson?.sigml);
+        if (!lesson) {
+            setLessonDesc("");
+            setLessonSymbol("");
+            setLessonSigml("");
+        } else {
+            setLessonDesc(lesson?.description);
+            setLessonSymbol(lesson?.symbol);
+            setLessonSigml(lesson?.sigml);
+        }
     }, [lesson]);
 
     const handleChapterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -74,8 +104,9 @@ const LessonsAdminPage = (props: Props) => {
             window.alert("Please fill all the fields");
             return;
         }
-
+        // FIXME: Send Credentials
         const respData = (await fetch("/api/chapters", {
+            credentials: "include",
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -85,7 +116,7 @@ const LessonsAdminPage = (props: Props) => {
                 title: chapterTitle,
                 description: chapterDesc,
                 difficulty: chapterDifficulty,
-                lessons: [],
+                lessons: chapter?.lessons ?? [],
             } as IChapter),
         }).then((resp) => resp.json())) as IChapterSaveResponse;
 
@@ -106,6 +137,7 @@ const LessonsAdminPage = (props: Props) => {
                 return current;
             });
         setChapter(respData.data?.chapter);
+        if (!chapter) setLesson(undefined);
     };
 
     const handleLessonSave = async () => {
@@ -113,18 +145,33 @@ const LessonsAdminPage = (props: Props) => {
             window.alert("Please fill all the fields");
             return;
         }
+
         const updatedChapter = {
             ...chapter,
-            lessons: [
-                ...(chapter?.lessons ?? []),
-                {
-                    symbol: lessonSymbol,
-                    sigml: lessonSigml,
-                    description: lessonDesc,
-                },
-            ],
+            lessons: [...(chapter?.lessons ?? [])],
         };
+
+        if (!lesson) {
+            updatedChapter.lessons.push({
+                symbol: lessonSymbol,
+                sigml: lessonSigml,
+                description: lessonDesc,
+            });
+        } else {
+            const lessonIndex = updatedChapter.lessons.findIndex(
+                (l) => l.symbol === lessonSymbol
+            );
+            updatedChapter.lessons[lessonIndex] = {
+                ...lesson,
+                symbol: lessonSymbol,
+                sigml: lessonSigml,
+                description: lessonDesc,
+            };
+        }
+
+        // FIXME: Send Credentials
         const respData = (await fetch("/api/chapters", {
+            credentials: "include",
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -146,8 +193,28 @@ const LessonsAdminPage = (props: Props) => {
             return current;
         });
         setChapter(respData.data?.chapter);
-        setLesson(respData.data?.chapter?.lessons?.at(-1));
+        setLesson(
+            respData.data?.chapter?.lessons?.find(
+                (l) => l.symbol === lessonSymbol
+            )
+        );
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debounceGetSigml = useCallback(
+        debounce(async (symbol: string) => {
+            if (!symbol) return;
+            const respData = (await fetch(`/api/sign?q=${symbol}`).then(
+                (resp) => resp.json()
+            )) as ISignResponse;
+            if (respData.status_code !== 200) {
+                window.alert("Something Went Wrong!!!");
+                return;
+            }
+            setLessonSigml(respData.data?.sigml ?? "");
+        }, 1000),
+        []
+    );
 
     return (
         <>
@@ -184,74 +251,85 @@ const LessonsAdminPage = (props: Props) => {
                             ))}
                         </select>
                     )}
-                </div>
-                {/* Chapter Info */}
-                <div className={styles.createChapter}>
-                    <h2>Chapter Info</h2>
-                    <br />
-                    <input
-                        type="text"
-                        placeholder="Enter Chapter Title"
-                        onChange={(e) => {
-                            setChapterTitle(e.target.value);
-                        }}
-                        value={chapterTitle}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Enter Description"
-                        onChange={(e) => {
-                            setChapterDesc(e.target.value);
-                        }}
-                        value={chapterDesc}
-                    />
-                    <input
-                        type="number"
-                        placeholder="Enter Difficulty"
-                        onChange={(e) => {
-                            setChapterDifficulty(Number(e.target.value));
-                        }}
-                        value={chapterDifficulty}
-                    />
 
-                    <button onClick={handleChapterSave}>
-                        {!chapter ? "Create" : "Update"}
-                    </button>
-                </div>
-                {/* Lesson Info */}
-                {chapter && (
+                    {/* Chapter Info */}
                     <div className={styles.createChapter}>
-                        <h2>Lesson Info</h2>
+                        <h2>Chapter Info</h2>
                         <br />
                         <input
                             type="text"
-                            placeholder="Enter Lesson Symbol"
+                            placeholder="Enter Chapter Title"
                             onChange={(e) => {
-                                setLessonSymbol(e.target.value);
+                                setChapterTitle(e.target.value);
                             }}
-                            value={lessonSymbol}
+                            value={chapterTitle}
                         />
                         <input
                             type="text"
                             placeholder="Enter Description"
                             onChange={(e) => {
-                                setLessonDesc(e.target.value);
+                                setChapterDesc(e.target.value);
                             }}
-                            value={lessonDesc}
+                            value={chapterDesc}
                         />
-                        <textarea
-                            placeholder="Enter sigml"
+                        <input
+                            type="number"
+                            placeholder="Enter Difficulty"
                             onChange={(e) => {
-                                setLessonSigml(e.target.value);
+                                setChapterDifficulty(Number(e.target.value));
                             }}
-                            value={lessonSigml}
+                            value={chapterDifficulty}
                         />
 
-                        <button onClick={handleLessonSave}>
-                            {!lesson ? "Create" : "Update"}
+                        <button onClick={handleChapterSave}>
+                            {!chapter ? "Create" : "Update"}
                         </button>
                     </div>
-                )}
+                    {/* Lesson Info */}
+                    {chapter && (
+                        <div className={styles.createChapter}>
+                            <h2>Lesson Info</h2>
+                            <br />
+                            <input
+                                type="text"
+                                placeholder="Enter Lesson Symbol"
+                                onChange={(e) => {
+                                    setLessonSymbol(e.target.value);
+                                    debounceGetSigml(e.target.value);
+                                }}
+                                value={lessonSymbol}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Enter Description"
+                                onChange={(e) => {
+                                    setLessonDesc(e.target.value);
+                                }}
+                                value={lessonDesc}
+                            />
+                            <textarea
+                                placeholder="Enter sigml"
+                                onChange={(e) => {
+                                    setLessonSigml(e.target.value);
+                                }}
+                                value={lessonSigml}
+                            />
+                            <button
+                                onClick={() =>
+                                    CWASA?.playSiGMLText(lessonSigml ?? "")
+                                }
+                            >
+                                Play
+                            </button>
+                            <button onClick={handleLessonSave}>
+                                {!lesson ? "Create" : "Update"}
+                            </button>
+                        </div>
+                    )}
+                </div>
+                <div className={styles.avatarContainer}>
+                    <div className="CWASAAvatar av0"></div>
+                </div>
             </div>
         </>
     );

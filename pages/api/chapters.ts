@@ -2,10 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { IChapterSaveResponse, IChaptersRepsonse } from "../../src/utils/types";
 import dbConnect from "../../src/utils/dbConnect";
 import Chapter, { IChapter } from "../../src/models/Chapter";
+import checkAuth from "../../src/utils/checkAuth";
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<IChaptersRepsonse | IChapterSaveResponse>
+    res: NextApiResponse<IChaptersRepsonse | IChapterSaveResponse | string>
 ) {
     const { method, body } = req;
     switch (method) {
@@ -21,6 +22,13 @@ export default async function handler(
             });
             break;
         case "PUT":
+            //FIXME: Frontend not sending correct headers
+            if (!checkAuth(req.headers.authorization) && false) {
+                return res.status(401).send("Auth required");
+            }
+            if (!body.title || !body.description || !body.difficulty) {
+                return res.status(400).send("Missing required fields");
+            }
             await dbConnect();
             if (body._id) {
                 // Update Chapter Info
@@ -38,7 +46,6 @@ export default async function handler(
             } else {
                 const chapter = new Chapter(body);
                 const resp = (await chapter.save()) as IChapter;
-                console.log(resp);
                 res.status(200).json({
                     status_code: 200,
                     data: {
