@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 * {
-    font-family: "Rubik", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 :root {
     --font-size: 1.6rem;
+    --large-font-size: 4em;
     --heading-font-size: 2rem;
     --primary-color: #d1d1d1;
     --primary-color-darker: #958939a3;
@@ -17,5 +18,8 @@
 }
 
 body {
-    background-color: var(--primary-color-lighter);
+    background-color: #fff;
+    width: 80%;
+    margin: 0;
+    margin-left: 10%;
 }

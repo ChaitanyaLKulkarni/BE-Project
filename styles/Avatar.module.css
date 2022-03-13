@@ -1,11 +1,12 @@
 .container {
     display: flex;
-    align-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: flex-start;
     gap: 4%;
-    width: 94%;
-    height: 100vh;
-    margin-left: 2%;
-    margin-right: 2%;
+    width: 100%;
+    height: 90vh;
     padding: 1%;
 }
 .controlls {
@@ -13,7 +14,7 @@
     align-content: center;
 }
 .avatarContainer {
-    flex: 2.5;
+    flex: 3;
     height: 80%;
 }
 .textContainer {
@@ -23,37 +24,55 @@
     margin: 1rem 0;
     font-size: var(--heading-font-size);
     padding: 0.3em 0.3em;
-    color: var(--primary-color-lighter);
-    background-color: var(--accent-color-darker);
+    color: black;
+    border: 2px solid black;
+    /* background-color: var(--accent-color-darker); */
 }
 .symbol {
     font-size: 1.1em;
+    font-weight: 500;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
     display: inline-block;
 }
 .highlight {
-    background-color: var(--primary-color-darker);
+    background-color: #ffff00;
+    /* background-color: var(--primary-color-darker); */
 }
 
+/* FIXME: Change style when disable.*/
 .btn {
     cursor: pointer;
-    width: 150px;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
     font-size: var(--font-size);
     font-weight: bold;
+    width: 175px;
+    height: 57px;
+    border: none;
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
 }
+
 .btn:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
+
 .play {
-    background-color: #4caf50;
+    background: #0a84ff;
+    color: #ffffff;
 }
+
 .stop {
-    background-color: #ff2300;
+    background: transparent;
+    color: #000;
+    border: #0a84ff;
+    border: 2px solid #0a84ff;
+    border-radius: 20px;
 }
+
 .heading {
     margin: 0 0 1em 0;
     width: 100%;
@@ -63,20 +82,33 @@
     color: var(--primary-color-lighter);
     background-color: var(--accent-color-darker);
 }
-.textarea,
-.CWASAAvMenu .av0 {
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid var(--accent-color-darker);
-    border-radius: 7px;
-    box-sizing: border-box;
-    font-size: var(--font-size);
-}
-.textarea {
-    width: 100%;
-}
+
 .label {
     font-size: var(--font-size);
     font-weight: bold;
+}
+
+/* New */
+
+.textarea {
+    width: 90%;
+    margin: 0 5%;
+    height: 250px;
+    font-size: 1.2em;
+    padding: 25px;
+    font-weight: 500;
+    mix-blend-mode: normal;
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+.btnsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 4%;
+    width: 100%;
+    height: 10vh;
+    padding: 1%;
 }

@@ -8,12 +8,12 @@ import {
     unicodeToHam,
 } from "../src/utils/hamnosys";
 import styles from "../styles/hamnosys.module.css";
-import Link from "next/link";
 import usePlaySigml from "../src/hooks/usePlaySigml";
+import NavBar from "../src/components/NavBar";
 
 type Props = {};
 
-const Hamnosys: NextPage = ({}: Props) => {
+const HamnosysPage: NextPage = ({}: Props) => {
     const CWASA = useCWASA();
     const [currentTab, setCurrentTab] = useState(0);
     const [gloss, setGloss] = useState("");
@@ -80,9 +80,7 @@ const Hamnosys: NextPage = ({}: Props) => {
             <Head>
                 <title>HamNoSys Editor</title>
             </Head>
-            <Link href="/avatar">
-                <a>Avatar</a>
-            </Link>
+            <NavBar />
             <div className={styles.container}>
                 <div className={styles.inputs}>
                     <input
@@ -2669,4 +2667,4 @@ const Hamnosys: NextPage = ({}: Props) => {
     );
 };
 
-export default Hamnosys;
+export default HamnosysPage;

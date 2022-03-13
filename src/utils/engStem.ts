@@ -29,11 +29,13 @@ const BLOCKED_WORDS = [
 
 const lem = new Lemmatizer();
 
-function engStem(query: string): string[] {
+function engStem(query: string, availableSymbols: string[]): string[] {
     const tokenizer = new natural.WordTokenizer();
     const tokens = tokenizer.tokenize(query);
     let lemmaWords = tokens.map((word) => {
-        // TODO: return word witouth lemmanization if word is found in available words
+        if (availableSymbols.includes(word.toLowerCase())) {
+            return word;
+        }
         const res = lem.only_lemmas(word)[0];
         return res;
     });

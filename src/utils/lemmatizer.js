@@ -6,7 +6,16 @@
  */
 import _ from "underscore";
 
-const cache = {};
+const cache = {
+    noun_idx: require("./dict/index.noun.json"),
+    noun_exc: require("./dict/noun.exc.json"),
+    verb_idx: require("./dict/index.verb.json"),
+    verb_exc: require("./dict/verb.exc.json"),
+    adj_idx: require("./dict/index.adj.json"),
+    adj_exc: require("./dict/adj.exc.json"),
+    adv_idx: require("./dict/index.adv.json"),
+    adv_exc: require("./dict/adv.exc.json"),
+};
 // Lemmatizer constructor
 var Lemmatizer = function () {
     this.wn_files = {
@@ -15,14 +24,6 @@ var Lemmatizer = function () {
         adj: ["./dict/index.adj.json", "./dict/adj.exc.json"],
         adv: ["./dict/index.adv.json", "./dict/adv.exc.json"],
     };
-    cache["noun_idx"] = require("./dict/index.noun.json");
-    cache["noun_exc"] = require("./dict/noun.exc.json");
-    cache["verb_idx"] = require("./dict/index.verb.json");
-    cache["verb_exc"] = require("./dict/verb.exc.json");
-    cache["adj_idx"] = require("./dict/index.adj.json");
-    cache["adj_exc"] = require("./dict/adj.exc.json");
-    cache["adv_idx"] = require("./dict/index.adv.json");
-    cache["adv_exc"] = require("./dict/adv.exc.json");
 
     this.morphological_substitutions = {
         noun: [
@@ -159,51 +160,19 @@ Lemmatizer.prototype = {
         return this.lems.length === 0;
     },
 
-    // set up dictionary data
-    load_wordnet_files: function (pos, list, exc) {
-        var key_idx = pos + this.idx;
-        this.open_file(key_idx, list);
-        var key_exc = pos + this.exc;
-        this.open_file(key_exc, exc);
-    },
-
     setup_dic_data: function (pos) {
         var self = this;
         var key_idx = pos + this.idx;
-        _.each(this.fetch_data(key_idx), function (w) {
+        _.each(cache[key_idx], function (w) {
             self.wordlists[pos][w] = w;
         });
         var key_exc = pos + this.exc;
-        _.each(this.fetch_data(key_exc), function (item) {
+        _.each(cache[key_exc], function (item) {
             var w = item[0];
             var s = item[1];
             self.exceptions[pos][w] = s;
         });
     },
-
-    open_file: function (key, file) {
-        // if (!localStorage.getItem(key)) {
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.open("GET", file, false);
-        //     xhr.send();
-        //     var data = xhr.responseText;
-        //     this.store_data(key, data);
-        // }
-        console.log(key, file);
-        this.store_data(key, require(file));
-    },
-
-    store_data: function (key, data) {
-        cache[key] = data;
-        // localStorage.setItem(key, data);
-    },
-
-    fetch_data: function (key) {
-        // var data = JSON.parse(localStorage.getItem(key));
-        const data = cache[key];
-        return data;
-    },
-    // end of set up dictionary data
 
     base_forms: function (pos) {
         this.irregular_bases(pos);

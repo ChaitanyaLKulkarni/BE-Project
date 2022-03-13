@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+}
+
+.lessonsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.lessonsContainer select {
+    width: 60%;
+    height: 100%;
+    border-radius: 0;
+    padding: 0.5em;
+    margin: 10px;
+}
+
+.lessonsContainer input {
+    width: 60%;
+    padding: 3px;
+    margin: 5px;
+}
+
+.lessonsContainer textarea {
+    width: 60%;
+    height: 100px;
+    padding: 3px;
+    margin: 5px;
+}
+
+.lessonsContainer button {
+    display: block;
+    width: 30%;
+    height: 10%;
+    padding: 3px;
+    margin: 5px;
+    margin-left: 15%;
+}
+
+.avatarContainer {
+    width: 800px;
+    height: 800px;
+}

@@ -8,28 +8,34 @@ const initCfg = {
     avsbsl: ["anna", "francoise", "luna", "marc", "siggi"],
     avSettings: { avList: "avsbsl", initAv: "luna" },
 };
-
-const useCWASA = (config: any = initCfg): ICWASA | undefined => {
+type Props = {
+    config?: any;
+    autoReload?: boolean;
+};
+const useCWASA = ({ config = initCfg, autoReload = true }: Props = {}):
+    | ICWASA
+    | undefined => {
     const [CWASA, setCWASA] = useState<ICWASA>();
     const router = useRouter();
     useEffect(() => {
         const script = document.createElement("script");
-        script.src = "jas/loc2022/cwa/allcsa.js";
+        script.src = "/jas/loc2022/cwa/allcsa.js";
         script.async = true;
         document.body.appendChild(script);
-
         // Need to do cause CWASA script leaves residue that can only be removed by reloading the page
-        const onRouterChange = () => {
-            router.reload();
-        };
-        router.events.on("routeChangeComplete", onRouterChange);
+        function onRouterChange(newPath: string) {
+            if (!autoReload) return;
+            window.location.href = router.basePath + newPath;
+        }
+
+        // router.events.on("routeChangeComplete", onRouterChange);
+        router.events.on("routeChangeStart", onRouterChange);
 
         return () => {
-            router.events.off("routeChangeComplete", onRouterChange);
-
+            router.events.off("routeChangeStart", onRouterChange);
             document.body.removeChild(script);
         };
-    }, [router]);
+    }, [router, autoReload]);
 
     useEffect(() => {
         const checkAndSet = () => {
