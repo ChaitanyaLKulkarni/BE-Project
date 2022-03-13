@@ -77,6 +77,28 @@ const LessonsPage = (props: Props) => {
                 </div>
                 <div className={styles.avatarContainer}>
                     <div className="CWASAAvatar av0"></div>
+                    <div className={styles.speedController}>
+                        <input
+                            type="text"
+                            className={`txtLogSpeed av0 ${styles.speedInp}`}
+                        />
+                        <input
+                            type="button"
+                            value="-"
+                            className={`bttnSpeedDown av0 ${styles.speedBtn}`}
+                        />
+                        <input
+                            type="button"
+                            value="+"
+                            className={`bttnSpeedUp av0 ${styles.speedBtn}`}
+                        />
+                        <input
+                            type="button"
+                            value="Reset"
+                            className={`bttnSpeedReset av0 ${styles.speedBtn} ${styles.resetBtn}`}
+                            disabled
+                        />
+                    </div>
                 </div>
             </div>
         </>

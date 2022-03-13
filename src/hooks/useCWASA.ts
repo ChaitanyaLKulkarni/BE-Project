@@ -6,7 +6,12 @@ const WAIT_TIME = 1000;
 
 const initCfg = {
     avsbsl: ["anna", "francoise", "luna", "marc", "siggi"],
-    avSettings: { avList: "avsbsl", initAv: "luna" },
+    avSettings: {
+        avList: "avsbsl",
+        initAv: "luna",
+        initSpeed: -3,
+        rateSpeed: 4,
+    },
 };
 type Props = {
     config?: any;
