@@ -422,4 +422,23 @@ function unicodeToHam(unicode: string): string | undefined {
     return _unicodeToSym.get(unicode);
 }
 
-export { unicodeToHam, convertToSigml, hamToUnicode };
+function getHamAndUnicode(
+    ham: string,
+    s: string
+): { unicode: string; ham: string } {
+    let hamSym = "";
+    let hamUnicode = "";
+    for (const sym of ham.match(/<([^(/\)]*)\/>/g) ?? []) {
+        const symbol = sym.replace(/<|\/>/g, "");
+        const unicode = _symToUnicode.get(symbol);
+        if (unicode) {
+            hamUnicode += unicode + " ";
+            hamSym += symbol + " ";
+        } else {
+            throw new Error(`${s} -> ${symbol} not found`);
+        }
+    }
+    return { unicode: hamUnicode.trim(), ham: hamSym.trim() };
+}
+
+export { unicodeToHam, convertToSigml, hamToUnicode, getHamAndUnicode };
