@@ -9,20 +9,21 @@
 ### TODO:
 
 -   [ ] Pages:
-    -   [ ] Index:
+    -   [X] Index:
         -   NavBar
         -   Info
-    -   [x] Avatar:
-    -   [ ] HamNosys Editor
+    -   [X] Avatar:
+    -   [X] HamNosys Editor
     -   [ ] About:
         -   [ ] Inspiration
         -   [ ] Basic Personal Info
         -   [ ] Thank you All
     -   [ ] Lessons:
-        -   [ ] Chapter:
-            -   [ ] Difficulty
-            -   [ ] Description
-            -   [ ] ISL 3d Avatar
+        -   [X] Chapter:
+            -   [X] Difficulty
+            -   [X] Description
+            -   [X] ISL 3d Avatar
+        -   [ ] Data Entry from admin page
 
 ## Findings
 

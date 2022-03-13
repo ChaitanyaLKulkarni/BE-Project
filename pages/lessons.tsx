@@ -10,15 +10,9 @@ type Props = {
 
 const LessonsPage = (props: Props) => {
     const CWASA = useCWASA();
-    const [allChapters, setAllChapters] = useState(props.chapters);
+    const [allChapters, _] = useState(props.chapters);
     const [chapter, setChapter] = useState<IChapter | undefined>();
     const [lesson, setLesson] = useState<ILesson | undefined>();
-
-    useEffect(() => {
-        if (allChapters.length > 0) {
-            setChapter(allChapters[0]);
-        }
-    }, [allChapters]);
 
     const handleChapterChange = (c: IChapter) => {
         setLesson(undefined);
