@@ -212,6 +212,7 @@ const LessonsAdminPage = (props: Props) => {
                 return;
             }
             setLessonSigml(respData.data?.sigml ?? "");
+            CWASA?.playSiGMLText(respData.data?.sigml ?? "");
         }, 1000),
         []
     );
