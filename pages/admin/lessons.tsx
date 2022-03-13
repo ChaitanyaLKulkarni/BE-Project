@@ -7,7 +7,7 @@ import {
     ISignResponse,
 } from "../../src/utils/types";
 import { IChapter, ILesson } from "../../src/models/Chapter";
-import styles from "../../styles/Lessons.module.css";
+import styles from "../../styles/admin/Lessons.module.css";
 
 type Props = {};
 
