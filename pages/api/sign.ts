@@ -6,6 +6,7 @@ import engStem from "../../src/utils/engStem";
 
 let globalWithCache = global as typeof globalThis & {
     hamNoSys: { [key: string]: { unicode: string; ham: string } } | undefined;
+    availableSymbols: string[];
 };
 
 function getSigml(sym: string) {
@@ -33,18 +34,22 @@ export default async function handler(
     }
     const query = req.query.q.toString().toLowerCase();
     let hamnosysCache: { [key: string]: { unicode: string; ham: string } } = {};
+    let availableSymbols: string[] = [];
     if (!globalWithCache.hamNoSys) {
         await dbConnect();
         const result = await HamNoSys.find<IHamNoSys>({});
         result.forEach((doc) => {
+            availableSymbols.push(doc.symbol);
             hamnosysCache[doc.symbol] = { unicode: doc.unicode, ham: doc.ham };
         });
         globalWithCache.hamNoSys = hamnosysCache;
+        globalWithCache.availableSymbols = availableSymbols;
     } else {
         hamnosysCache = globalWithCache.hamNoSys;
+        availableSymbols = globalWithCache.availableSymbols;
     }
 
-    const words = engStem(query);
+    const words = engStem(query, availableSymbols);
     let sigml = "<sigml>";
     const symbols: string[][] = [];
     for (const word of words) {
