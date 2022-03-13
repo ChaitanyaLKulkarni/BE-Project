@@ -423,7 +423,6 @@
         "w": "_profession",
         "s": "<sigml><hns_sign gloss=\" profession\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamsymmlr/><hamfingerstraightmod/><hamalternatingmotion/><hampinchall/><hamextfingero/><hampalmu/><hamchest/><hamclose/><hamseqbegin/><hammoveo/><hammovei/><hamseqend/><hamrepeatfromstart/><hamalternatingmotion/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "_the", "s": null },
     {
         "w": "a",
         "s": "<sigml><hns_sign gloss=\"a\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamsymmpar/><hamfist/><hamthumboutmod/><hamextfingeru/><hampalmd/><hamtouch/><hamchest/><hamnomotion/></hamnosys_manual></hns_sign></sigml>"
@@ -2984,8 +2983,6 @@
         "w": "consume",
         "s": "<sigml><hns_sign gloss=\"consume\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamflathand/><hamextfingeru/><hampalmu/><hamteeth/><hamclose/><hamnomotion/><hammoved/><hamchest/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "contact(point_hand)", "s": null },
-    { "w": "contact(pointhand)", "s": null },
     {
         "w": "contact",
         "s": "<sigml><hns_sign gloss=\"contact\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamfinger2345/><hamthumboutmod/><hamextfingeru/><hampalmdl/><hamshoulders/><hamclose/><hammovedo/><hamlargemod/><hamparbegin/><hamreplace/><hampinch12open/><hamstomach/><hamparend/></hamnosys_manual></hns_sign></sigml>"
@@ -4562,7 +4559,6 @@
         "w": "foot",
         "s": "<sigml><hns_sign gloss=\"foot\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamparbegin/><hamflathand/><hamplus/><hamflathand/><hamparend/><hamparbegin/><hamextfingeru/><hampalml/><hamplus/><hamextfingerr/><hampalmu/><hamparend/><hamparbegin/><hamshouldertop/><hamlrat/><hamplus/><hamchest/><hamlrat/><hamparend/><hamnomotion/><hamnomotion/><hamplus/><hamparbegin/><hamflathand/><hamplus/><hamflathand/><hamparend/><hamparbegin/><hamextfingero/><hampalml/><hamplus/><hamextfingerr/><hampalmu/><hamparend/><hamparbegin/><hamchest/><hamlrat/><hamplus/><hamchest/><hamlrat/><hamparend/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "foot_(measurement)", "s": null },
     {
         "w": "football",
         "s": "<sigml><hns_sign gloss=\"football\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamsymmlr/><hamfinger2345/><hamthumboutmod/><hamextfingerd/><hambetween/><hamextfingerdl/><hampalml/><hamchest/><hamclose/><hamplus/><hamsymmlr/><hamfinger2345/><hamthumboutmod/><hamextfingero/><hampalml/><hamchest/><hamclose/><hammoveo/><hamsmallmod/><hamplus/><hamsymmlr/><hamfinger2345/><hamthumboutmod/><hamextfingerd/><hambetween/><hamextfingerdl/><hampalml/><hamchest/><hamclose/><hamplus/><hamsymmlr/><hamfinger2345/><hamthumboutmod/><hamextfingero/><hampalml/><hamchest/><hamclose/><hammoveo/><hamsmallmod/></hamnosys_manual></hns_sign></sigml>"
@@ -5631,7 +5627,6 @@
         "w": "hostel",
         "s": "<sigml><hns_sign gloss=\"hostel\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamparbegin/><hamflathand/><hamthumboutmod/><hamplus/><hamflathand/><hamthumboutmod/><hamparend/><hamparbegin/><hamextfingerol/><hambetween/><hamextfingerl/><hampalmd/><hamplus/><hamextfingero/><hampalmu/><hamparend/><hamparbegin/><hampalm/><hamplus/><hampalm/><hamparend/><hamtouch/><hamshoulders/><hamclose/><hamnomotion/><hammoveo/><hamplus/><hamparbegin/><hamflathand/><hamplus/><hamflathand/><hamparend/><hamparbegin/><hamextfingerul/><hambetween/><hamextfingeru/><hampalmd/><hamplus/><hamextfingerul/><hambetween/><hamextfingeru/><hampalmur/><hamparend/><hamparbegin/><hammiddlefinger/><hamfingerpad/><hampalm/><hamplus/><hammiddlefinger/><hamfingerpad/><hampalm/><hamparend/><hamtouch/><hamlrat/><hamear/><hamclose/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "hot(tofeel)", "s": null },
     {
         "w": "hot",
         "s": "<sigml><hns_sign gloss=\"hot\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamfinger2/><hamfingerhookmod/><hamthumbacrossmod/><hamextfingerl/><hampalmd/><hamforehead/><hamtouch/><hammover/><hamsmallmod/><hamplus/><hamsymmlr/><hamfinger2345/><hamthumboutmod/><hamextfingerdl/><hampalml/><hamchest/><hamclose/><hamreplace/><hamfinger2345/><hamthumboutmod/><hamextfingerl/><hampalml/><hamreplace/><hamfinger2345/><hamthumboutmod/><hamextfingerdl/><hampalml/></hamnosys_manual></hns_sign></sigml>"
@@ -7540,7 +7535,6 @@
         "w": "mysuru",
         "s": "<sigml><hns_sign gloss=\"mysuru\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamparbegin/><hamfinger2345/><hamthumbacrossmod/><hampinky/><hamdoublehooked/><hamplus/><hamflathand/><hamthumboutmod/><hamparend/><hamparbegin/><hamextfingerul/><hampalmd/><hamplus/><hamextfingero/><hampalmur/><hamparend/><hamparbegin/><hampalm/><hamplus/><hammiddlefinger/><hamfingermidjoint/><hamparend/><hamtouch/><hamshoulders/><hamclose/><hamnomotion/><hamplus/><hamfinger2/><hamthumbacrossmod/><hamextfingeru/><hampalmd/><hamforehead/><hamtouch/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "n-n(norfolk)", "s": null },
     {
         "w": "n",
         "s": "<sigml><hns_sign gloss=\"n\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamfinger23/><hamthumbacrossmod/><hamextfingerol/><hampalmd/><hamchest/><hamlrat/><hamclose/></hamnosys_manual></hns_sign></sigml>"
@@ -8061,7 +8055,6 @@
         "w": "oppress",
         "s": "<sigml><hns_sign gloss=\"oppress\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamparbegin/><hamfist/><hamthumbacrossmod/><hamplus/><hamflathand/><hamparend/><hamparbegin/><hamextfingeru/><hampalmdl/><hamplus/><hamextfingerur/><hampalmd/><hamparend/><hamparbegin/><hampalm/><hamplus/><hamindexfinger/><hamfingermidjoint/><hampalm/><hamparend/><hamtouch/><hamshoulders/><hamlrat/><hamclose/><hamplus/><hamparbegin/><hamfist/><hamthumbacrossmod/><hamplus/><hamflathand/><hamparend/><hamparbegin/><hamextfingero/><hampalml/><hamplus/><hamextfingerr/><hampalmd/><hamparend/><hamparbegin/><hampalm/><hamplus/><hamindexfinger/><hamfingermidjoint/><hampalm/><hamparend/><hamtouch/><hamchest/><hamlrat/><hamclose/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "opraise-clap(deaf)", "s": null },
     {
         "w": "optician",
         "s": "<sigml><hns_sign gloss=\"optician\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamsymmlr/><hamcee12/><hamthumbopenmod/><hamextfingeru/><hampalml/><hameyes/><hamlrat/><hamtouch/><hamnomotion/><hamplus/><hamparbegin/><hamfinger2/><hamfingerhookmod/><hamplus/><hamfinger2/><hamfingerhookmod/><hamparend/><hamparbegin/><hamextfingeru/><hampalmdl/><hamplus/><hamextfingerur/><hampalmdl/><hamparend/><hamparbegin/><hamshouldertop/><hamlrat/><hamplus/><hamshoulders/><hamparend/><hamnodding/><hamplus/><hamcee12/><hamthumbopenmod/><hamextfingerr/><hampalml/><hamhead/><hamlrat/><hammoved/><hamlargemod/></hamnosys_manual></hns_sign></sigml>"
@@ -9498,7 +9491,6 @@
         "w": "ride",
         "s": "<sigml><hns_sign gloss=\"ride\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamsymmlr/><hamfinger2/><hamfingerbendmod/><hamthumbacrossmod/><hamextfingero/><hampalml/><hamshouldertop/><hammoved/><hamsmallmod/><hamarcr/><hamplus/><hamsymmlr/><hamparbegin/><hamfinger23spread/><hamthumbacrossmod/><hamplus/><hamfinger2/><hamthumbacrossmod/><hamparend/><hamparbegin/><hamextfingerd/><hampalmd/><hamplus/><hamextfingero/><hampalmd/><hamparend/><hamparbegin/><hamringfinger/><hamfingermidjoint/><hamhandback/><hamplus/><hamindexfinger/><hamfingermidjoint/><hamparend/><hamtouch/><hamseqbegin/><hammoveo/><hamarcu/><hamseqend/><hamrepeatcontinueseveral/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "right->_the", "s": null },
     {
         "w": "right-_me",
         "s": "<sigml><hns_sign gloss=\"right- me\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamfist/><hamextfingerul/><hampalmdl/><hamshoulders/><hamclose/></hamnosys_manual></hns_sign></sigml>"
@@ -12811,7 +12803,6 @@
         "w": "world",
         "s": "<sigml><hns_sign gloss=\"world\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamparbegin/><hamfinger2345/><hamthumboutmod/><hamplus/><hamfinger2345/><hamthumboutmod/><hamparend/><hamparbegin/><hamextfingeru/><hampalmdl/><hamplus/><hamextfingero/><hampalmu/><hamparend/><hamparbegin/><hamshouldertop/><hamlrat/><hamplus/><hamlrat/><hamstomach/><hamparend/><hamplus/><hamparbegin/><hamfinger2345/><hamthumboutmod/><hamplus/><hamfinger2345/><hamthumboutmod/><hamfingerbendmod/><hamparend/><hamparbegin/><hamextfingerul/><hampalml/><hamplus/><hamextfingeru/><hampalmdr/><hamparend/><hamparbegin/><hamshoulders/><hamlrat/><hamplus/><hamlrat/><hamshouldertop/><hamparend/></hamnosys_manual></hns_sign></sigml>"
     },
-    { "w": "worn(warn)", "s": null },
     {
         "w": "worn",
         "s": "<sigml><hns_sign gloss=\"worn\"><hamnosys_nonmanual></hamnosys_nonmanual><hamnosys_manual><hamfinger2/><hamextfingeru/><hampalml/><hamchest/><hamparbegin/><hammovedr/><hamsmallmod/><hamreplace/><hamextfingero/><hampalml/><hamparend/></hamnosys_manual></hns_sign></sigml>"
