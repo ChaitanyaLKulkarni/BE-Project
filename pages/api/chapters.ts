@@ -37,6 +37,7 @@ export default async function handler(
                     body,
                     { new: true }
                 )) as IChapter;
+                await res.unstable_revalidate("/lessons");
                 res.status(200).json({
                     status_code: 200,
                     data: {
@@ -46,6 +47,7 @@ export default async function handler(
             } else {
                 const chapter = new Chapter(body);
                 const resp = (await chapter.save()) as IChapter;
+                await res.unstable_revalidate("/lessons");
                 res.status(200).json({
                     status_code: 200,
                     data: {
