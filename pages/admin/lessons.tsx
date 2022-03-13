@@ -325,6 +325,11 @@ const LessonsAdminPage = (props: Props) => {
                             <button onClick={handleLessonSave}>
                                 {!lesson ? "Create" : "Update"}
                             </button>
+                            {lesson && (
+                                <button onClick={() => setLesson(undefined)}>
+                                    Create New
+                                </button>
+                            )}
                         </div>
                     )}
                 </div>
