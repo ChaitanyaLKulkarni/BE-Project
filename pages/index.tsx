@@ -16,7 +16,7 @@ const HomePage: NextPage = () => {
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.title}>
-                        Welcome to Text to Indian Sign Language conversion
+                        Text to Indian Sign Language conversion
                     </div>
                     <div className={styles.decsription}>
                         <ul>
