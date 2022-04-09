@@ -2639,14 +2639,14 @@ const HamnosysPage: NextPage = ({}: Props) => {
                                 Stop
                             </button>
                             <br />
-                            <button
+                            {/* <button
                                 className="sigml-button"
                                 onClick={() =>
                                     window.alert("NOT implemented !!😅")
                                 }
                             >
                                 Save
-                            </button>
+                            </button> */}
                             <button
                                 className="sigml-button"
                                 onClick={() => {
