@@ -39,6 +39,9 @@ const LessonsPage = (props: Props) => {
 
     return (
         <>
+            <Head>
+                <title>Lessons - Learn to sign</title>
+            </Head>
             <NavBar />
             <div className={styles.container}>
                 <div className={styles.lessonsContainer}>
@@ -115,6 +118,7 @@ const LessonsPage = (props: Props) => {
 };
 
 import dbConnect from "../src/utils/dbConnect";
+import Head from "next/head";
 export async function getStaticProps() {
     await dbConnect();
     const chapters = await Chapter.find<IChapter>({});
