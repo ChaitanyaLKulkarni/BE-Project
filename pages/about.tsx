@@ -7,10 +7,7 @@ const AboutPage = (props: Props) => {
     return (
         <>
             <NavBar />
-            <div className="container">
-                This is some stupid thing that propelry you should not be
-                reading....
-            </div>
+            <div className="container">Under construction...</div>
         </>
     );
 };

@@ -40,7 +40,6 @@
     /* background-color: var(--primary-color-darker); */
 }
 
-/* FIXME: Change style when disable.*/
 .btn {
     cursor: pointer;
     font-size: var(--font-size);
