@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import useCWASA from "../src/hooks/useCWASA";
@@ -20,6 +20,9 @@ const AvatarPage: NextPage = ({}: Props) => {
         symbols,
     } = usePlaySigml(CWASA);
 
+    useEffect(() => {
+        fetch("/api/sign?q=hello");
+    }, []);
     return (
         <>
             <Head>
