@@ -15,9 +15,9 @@ const HomePage: NextPage = () => {
             <NavBar />
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <div className={styles.title}>
+                    <h2 className={styles.title} data-testid="heading">
                         Text to Indian Sign Language conversion
-                    </div>
+                    </h2>
                     <div className={styles.decsription}>
                         <ul>
                             <li>
@@ -48,7 +48,7 @@ const HomePage: NextPage = () => {
                         alt="Mark"
                     />
                     <Link href={routes.AvatarPage.path}>
-                        <a className={styles.tryIt}>
+                        <a data-testid="link" className={styles.tryIt}>
                             <svg
                                 width="235"
                                 height="113"
