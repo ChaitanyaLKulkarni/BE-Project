@@ -13,7 +13,7 @@ const NavBar = (props: Props) => {
     return (
         <div className={styles.container}>
             {Object.entries(routes).map(([page, pageInfo]) => (
-                <Link href="/" key={pageInfo.title}>
+                <Link href="/abc" key={pageInfo.title}>
                     <a
                         className={`${styles.link} ${
                             currentPage === pageInfo.path ? styles.active : ""
