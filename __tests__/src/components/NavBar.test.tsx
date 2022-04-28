@@ -17,6 +17,12 @@ describe("NavBar", () => {
             </RouterContext.Provider>
         );
         for (const [page, pageInfo] of Object.entries(routes)) {
+            if (pageInfo.hidden) {
+                expect(
+                    screen.queryByText(pageInfo.title)
+                ).not.toBeInTheDocument();
+                continue;
+            }
             expect(screen.getByText(pageInfo.title)).toBeInTheDocument();
         }
     });
@@ -28,6 +34,9 @@ describe("NavBar", () => {
             </RouterContext.Provider>
         );
         for (const [page, pageInfo] of Object.entries(routes)) {
+            if (pageInfo.hidden) {
+                continue;
+            }
             await waitFor(() => {
                 fireEvent.click(screen.getByText(pageInfo.title));
                 expect(router.push).toHaveBeenCalledWith(
