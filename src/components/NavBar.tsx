@@ -12,17 +12,22 @@ const NavBar = (props: Props) => {
 
     return (
         <div className={styles.container}>
-            {Object.entries(routes).map(([page, pageInfo]) => (
-                <Link href={pageInfo.path} key={pageInfo.title}>
-                    <a
-                        className={`${styles.link} ${
-                            currentPage === pageInfo.path ? styles.active : ""
-                        }`}
-                    >
-                        {pageInfo.title}
-                    </a>
-                </Link>
-            ))}
+            {Object.entries(routes).map(
+                ([page, pageInfo]) =>
+                    !pageInfo?.hidden && (
+                        <Link href={pageInfo.path} key={pageInfo.title}>
+                            <a
+                                className={`${styles.link} ${
+                                    currentPage === pageInfo.path
+                                        ? styles.active
+                                        : ""
+                                }`}
+                            >
+                                {pageInfo.title}
+                            </a>
+                        </Link>
+                    )
+            )}
         </div>
     );
 };
