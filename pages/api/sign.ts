@@ -4,6 +4,9 @@ import dbConnect from "../../src/utils/dbConnect";
 import HamNoSys, { IHamNoSys } from "../../src/models/HamNoSys";
 import engStem from "../../src/utils/engStem";
 
+import hamnosysJson from "../../hamnosys.json";
+import availableSymbolsCache from "../../availableSymbols.json";
+
 let globalWithCache = global as typeof globalThis & {
     hamNoSys: { [key: string]: { unicode: string; ham: string } } | undefined;
     availableSymbols: string[];
@@ -36,12 +39,15 @@ export default async function handler(
     let hamnosysCache: { [key: string]: { unicode: string; ham: string } } = {};
     let availableSymbols: string[] = [];
     if (!globalWithCache.hamNoSys) {
-        await dbConnect();
-        const result = await HamNoSys.find<IHamNoSys>({});
-        result.forEach((doc) => {
-            availableSymbols.push(doc.symbol);
-            hamnosysCache[doc.symbol] = { unicode: doc.unicode, ham: doc.ham };
-        });
+        // await dbConnect();
+        // const result = await HamNoSys.find<IHamNoSys>({});
+        // result.forEach((doc) => {
+        //     availableSymbols.push(doc.symbol);
+        //     hamnosysCache[doc.symbol] = { unicode: doc.unicode, ham: doc.ham };
+        // });
+        hamnosysCache = hamnosysJson;
+        availableSymbols = availableSymbolsCache;
+
         globalWithCache.hamNoSys = hamnosysCache;
         globalWithCache.availableSymbols = availableSymbols;
     } else {
