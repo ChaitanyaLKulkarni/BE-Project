@@ -20,9 +20,6 @@ const AvatarPage: NextPage = ({}: Props) => {
         symbols,
     } = usePlaySigml(CWASA);
 
-    useEffect(() => {
-        fetch("/api/sign?q=hello");
-    }, []);
     return (
         <>
             <Head>
