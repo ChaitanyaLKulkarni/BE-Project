@@ -41,6 +41,11 @@ const AvatarPage: NextPage = ({}: Props) => {
                         placeholder="Enter English text here"
                         value={inpText}
                         onChange={(e) => setInpText(e.target.value)}
+                        onKeyUp={(e) =>
+                            e.ctrlKey &&
+                            e.code == "Enter" &&
+                            requestAndPlaySiGML(inpText)
+                        }
                     ></textarea>
                     <div className={styles.btnsContainer}>
                         <button
