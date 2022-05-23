@@ -47,7 +47,7 @@ const HomePage: NextPage = () => {
                         height={420}
                         alt="Mark"
                     />
-                    <Link href={routes.AvatarPage.path}>
+                    <Link href={"routes.AvatarPage.path"}>
                         <a data-testid="link" className={styles.tryIt}>
                             <svg
                                 width="235"
