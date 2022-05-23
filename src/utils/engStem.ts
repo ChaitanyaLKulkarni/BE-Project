@@ -1,32 +1,10 @@
+import fs from "fs";
 import natural from "natural";
 import Lemmatizer from "./lemmatizer";
 
-export const BLOCKED_WORDS = [
-    "am",
-    "are",
-    "is",
-    "was",
-    "were",
-    "be",
-    "being",
-    "been",
-    "have",
-    "has",
-    "had",
-    "do",
-    "does",
-    "did",
-    "could",
-    "should",
-    "would",
-    "can",
-    "shall",
-    "will",
-    "may",
-    "might",
-    "must",
-    "let",
-];
+export const BLOCKED_WORDS = fs
+    .readFileSync("src/utils/blocked_words.txt", "utf8")
+    .split(/\r?\n/);
 
 const lem = new Lemmatizer();
 

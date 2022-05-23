@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ICWASA } from "../utils/CWASA";
 import { ISignResponse } from "../utils/types";
 
@@ -10,48 +10,54 @@ export default function usePlaySigml(CWASA: ICWASA | undefined) {
     const [symbols, setSymbols] = useState([] as Symbol[]);
     const [signId, seSignId] = useState(0);
 
-    const requestAndPlaySiGML = async (inpText: string): Promise<void> => {
-        if (!CWASA) return;
-        setIsLoading(true);
-        fetch(
-            "/api/sign?" +
-                new URLSearchParams({
-                    q: inpText,
-                }).toString()
-        )
-            .then((resp) => resp.json())
-            .then((data: ISignResponse) => {
-                if (data.status_code !== 200) return;
-                let i = 0;
-                const symbols: Symbol[] = [];
-                data.data?.symbols.forEach((symbol) => {
-                    for (let j = 0; j < symbol.length; j++) {
-                        const sym = symbol[j];
-                        symbols.push({ symbol: sym, idx: i++ });
-                    }
-                    symbols.push({ symbol: " ", idx: i + 0.1 });
+    const requestAndPlaySiGML = useCallback(
+        async (inpText: string): Promise<void> => {
+            if (!CWASA) return;
+            setIsLoading(true);
+            fetch(
+                "/api/sign?" +
+                    new URLSearchParams({
+                        q: inpText,
+                    }).toString()
+            )
+                .then((resp) => resp.json())
+                .then((data: ISignResponse) => {
+                    if (data.status_code !== 200) return;
+                    let i = 0;
+                    const symbols: Symbol[] = [];
+                    data.data?.symbols.forEach((symbol) => {
+                        for (let j = 0; j < symbol.length; j++) {
+                            const sym = symbol[j];
+                            symbols.push({ symbol: sym, idx: i++ });
+                        }
+                        symbols.push({ symbol: " ", idx: i + 0.1 });
+                    });
+                    setSymbols(symbols);
+                    CWASA?.playSiGMLText(data.data?.sigml ?? "");
+                })
+                .catch((err) => {
+                    window.alert("Something went wrong!...");
+                    console.error(err);
+                })
+                .finally(() => {
+                    setIsLoading(false);
                 });
-                setSymbols(symbols);
-                CWASA?.playSiGMLText(data.data?.sigml ?? "");
-            })
-            .catch((err) => {
-                window.alert("Something went wrong!...");
-                console.error(err);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    };
+        },
+        [CWASA]
+    );
 
-    const playSigmlText = (sigml: string): string | undefined => {
-        if (!CWASA) return;
-        return CWASA.playSiGMLText(sigml);
-    };
+    const playSigmlText = useCallback(
+        (sigml: string): string | undefined => {
+            if (!CWASA) return;
+            return CWASA.playSiGMLText(sigml);
+        },
+        [CWASA]
+    );
 
-    const stopPlaying = (): string | undefined => {
+    const stopPlaying = useCallback((): string | undefined => {
         if (!CWASA) return;
         return CWASA.stopSiGML();
-    };
+    }, [CWASA]);
 
     useEffect(() => {
         CWASA?.addHook("animactive", () => setIsPlaying(true));
