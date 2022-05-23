@@ -1,7 +1,7 @@
 import natural from "natural";
 import Lemmatizer from "./lemmatizer";
 
-const BLOCKED_WORDS = [
+export const BLOCKED_WORDS = [
     "am",
     "are",
     "is",
@@ -13,6 +13,7 @@ const BLOCKED_WORDS = [
     "have",
     "has",
     "had",
+    "do",
     "does",
     "did",
     "could",
