@@ -1,10 +1,7 @@
-import fs from "fs";
 import natural from "natural";
 import Lemmatizer from "./lemmatizer";
-
-export const BLOCKED_WORDS = fs
-    .readFileSync("src/utils/blocked_words.txt", "utf8")
-    .split(/\r?\n/);
+import blockedWords from "./blockedWords.json";
+export const BLOCKED_WORDS = blockedWords;
 
 const lem = new Lemmatizer();
 
