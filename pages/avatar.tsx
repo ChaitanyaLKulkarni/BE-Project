@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import type { NextPage } from "next";
+import Image from "next/image";
 import Head from "next/head";
+import SpeechRecognition, {
+    useSpeechRecognition,
+} from "react-speech-recognition";
 import useCWASA from "../src/hooks/useCWASA";
 import usePlaySigml from "../src/hooks/usePlaySigml";
 import styles from "../styles/Avatar.module.css";
 import NavBar from "../src/components/NavBar";
 
+import micSvg from "../public/img/mic.svg";
+import micMuteSvg from "../public/img/mic-mute.svg";
 type Props = {};
 
 const AvatarPage: NextPage = ({}: Props) => {
@@ -20,6 +26,25 @@ const AvatarPage: NextPage = ({}: Props) => {
         symbols,
     } = usePlaySigml(CWASA);
 
+    const { transcript, finalTranscript, listening } = useSpeechRecognition();
+
+    const handleListing = () => {
+        SpeechRecognition.startListening();
+    };
+    const stopHandle = () => {
+        SpeechRecognition.stopListening();
+    };
+
+    useEffect(() => {
+        setInpText(transcript);
+    }, [transcript]);
+
+    useEffect(() => {
+        if (finalTranscript.length > 0) {
+            requestAndPlaySiGML(finalTranscript);
+        }
+    }, [finalTranscript, requestAndPlaySiGML]);
+
     return (
         <>
             <Head>
@@ -28,14 +53,6 @@ const AvatarPage: NextPage = ({}: Props) => {
             <NavBar />
             <div className={styles.container}>
                 <div className={styles.controlls}>
-                    {/* <p className={styles.heading}>Text to ISL Converter</p>
-                    <label className={styles.label} htmlFor="menu">
-                        Avatar: &emsp;
-                    </label>
-                    <span className="CWASAAvMenu av0" id="menu"></span>
-                    <label className={styles.label} htmlFor="textInp">
-                        Enter the Text: &emsp;
-                    </label> */}
                     <textarea
                         className={styles.textarea}
                         placeholder="Enter English text here"
@@ -55,6 +72,14 @@ const AvatarPage: NextPage = ({}: Props) => {
                         >
                             Play
                         </button>
+                        &emsp;
+                        <Image
+                            src={listening ? micMuteSvg : micSvg}
+                            width={30}
+                            height={30}
+                            alt="mic"
+                            onClick={listening ? stopHandle : handleListing}
+                        ></Image>
                         &emsp;
                         <button
                             className={`${styles.btn} ${styles.stop}`}
