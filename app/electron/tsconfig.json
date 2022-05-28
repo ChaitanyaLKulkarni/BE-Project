@@ -1,14 +1,18 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "sourceMap": true,
-    "strict": true,
-    "outDir": "../build",
-    "rootDir": "../",
-    "noEmitOnError": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
-  }
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "strict": true,
+        "outDir": "../build",
+        "rootDir": "../",
+        "noEmitOnError": true,
+        "typeRoots": ["node_modules/@types"],
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true
+    }
 }
