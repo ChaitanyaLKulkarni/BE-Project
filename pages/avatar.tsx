@@ -78,6 +78,7 @@ const AvatarPage: NextPage = ({}: Props) => {
                             width={30}
                             height={30}
                             alt="mic"
+                            className={styles.btn}
                             onClick={listening ? stopHandle : handleListing}
                         ></Image>
                         &emsp;
